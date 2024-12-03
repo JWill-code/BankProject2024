@@ -1,11 +1,17 @@
 #pragma once
 
+#include "BankStorage.h"
 #include "Account.h"
+
+class BankStorage;
 
 class BankLogic
 {
 private:
-	Account currentUser;
+
+	/* References to other classes */
+	BankStorage *bankStorage;
+	Account *currentUser;
 
 	void displayBankMenu();
 	void displayUserMenu();

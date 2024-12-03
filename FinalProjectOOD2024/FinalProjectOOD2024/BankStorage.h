@@ -2,14 +2,26 @@
 
 #include <string>
 
+#include "BankLogic.h"
 #include "User.h"
 #include "Manager.h"
+
+// Forward-declaration allows BankLogic to be referenced despite not yet being initialized
+class BankLogic;
 
 class BankStorage
 {
 private:
-	
+
+	/* References to other classes */
+
+	BankLogic *bankLogic;
+
 public:
+
+	/* Constructor */
+
+	BankStorage(BankLogic *bankLogic);
 
 	/* User Data Functions */
 

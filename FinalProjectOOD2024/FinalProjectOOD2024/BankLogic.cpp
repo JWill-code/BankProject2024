@@ -3,7 +3,7 @@
 // Constructor of the main bank application
 BankLogic::BankLogic() {
 
-
+	bankStorage = new BankStorage(this);
 }
 
 void BankLogic::displayBankMenu() {
@@ -25,10 +25,16 @@ void BankLogic::displayManagerMenu() {
 
 Account BankLogic::getCurrentUser() {
 
-	return currentUser;
+	return *currentUser;
 }
 
 void BankLogic::setCurrentUser(Account u) {
 
-	currentUser = u;
+	// If the current user is not null, delete it
+	if (currentUser) {
+
+		delete currentUser;
+	}
+
+	currentUser = new Account(u);
 }
