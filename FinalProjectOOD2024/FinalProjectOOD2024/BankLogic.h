@@ -5,11 +5,20 @@
 class BankLogic
 {
 private:
-	Account currentuser;
+	Account currentUser;
+
+	void displayBankMenu();
+	void displayUserMenu();
+	void displayManagerMenu();
 
 public:
 
-	//* Getters and Setters *//
+	/* Constructor */
+
+	BankLogic();
+
+	/* Getters and Setters */
+
 	Account getCurrentUser();
 	void setCurrentUser(Account u);
 };
