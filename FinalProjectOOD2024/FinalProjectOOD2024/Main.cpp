@@ -6,7 +6,7 @@
 int main() {
 
     // Create and open a text file
-    ofstream MyFile("Manager.txt");
+    ofstream MyFile("User.txt");
     // Write to the file
     MyFile << "Content for User information";
     // Close the file
