@@ -1,5 +1,5 @@
 #include "Account.h"
-
+#include "User.h"
 /* Constructors */
 
 Account::Account(int id, std::string userName, std::string firstName, std::string lastName, std::string password) {
