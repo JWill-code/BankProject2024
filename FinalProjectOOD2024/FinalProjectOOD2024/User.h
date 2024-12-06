@@ -14,5 +14,6 @@ public:
     User(std::string firstName, std::string lastName, int id, std::string userName, std::string password); //contains User info and variables
     User(const User& other);
     //constructors
+    //connect to user.txt file
 };
 

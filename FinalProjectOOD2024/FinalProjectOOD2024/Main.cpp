@@ -27,4 +27,12 @@ int main() {
 
 		std::cout << exception;
 	}
+    //
+    int functNum;
+    cout << "Type integer for associated function" << endl;
+    cout << "1. User Login" << endl;
+    cout << "2. Create Account" << endl;
+    cout << "3. Manager Login" << endl;
+    cout << "4. Exit " << endl;
+    cin >> functNum;
 }
