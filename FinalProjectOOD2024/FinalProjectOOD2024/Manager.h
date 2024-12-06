@@ -2,7 +2,7 @@
 
 #include "Account.h"
 
-class Manager : Account
+class Manager : public Account
 {
 private:
     string firstName;
