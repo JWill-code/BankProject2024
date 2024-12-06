@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <fstream>
+#include <vector>
 
 #include "BankLogic.h"
 #include "User.h"
@@ -13,9 +15,19 @@ class BankStorage
 {
 private:
 
+
+    /* Static file path information */
+    static std::string folderName;
+    static std::string usersFileName;
+    static std::string managersFileName;
+
 	/* References to other classes */
 
 	BankLogic *bankLogic;
+
+    // List of users loaded from users.txt
+    std::vector<User> userList;
+    std::vector<Manager> managerList;
 
 public:
 
@@ -26,15 +38,27 @@ public:
 	/* User Data Functions */
 
 	User loginUser(std::string uName, std::string pswd) const;
-	bool createUser(User u);
-	bool deleteUser(int id);
-	bool saveUser(User u);
-	User loadUser(int id);
+	bool addUser(User u);
+	bool removeUser(int id);
+	User getUser(int id);
+    bool saveUser(User u);
+
+    bool saveUsersToFile(std::string fileName);
+    bool loadUsersFromFile(std::string fileName);
 
 	/* Manager Data Functions */
 
 	Manager loginManager(std::string uName, std::string pswd) const;
-	bool saveManager(Manager m);
-	Manager loadManager(int id);
+    bool saveManager(Manager m);
+
+	bool saveManagersToFile(std::string fileName);
+	bool loadManagersFromFile(std::string fileName);
+
+
+    /* Static Data for File Storage Information */
+
+    static std::string getUserFilePath();
+    static std::string getManagerFilePath();
+
 };
 

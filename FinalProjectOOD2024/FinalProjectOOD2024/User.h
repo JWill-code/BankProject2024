@@ -2,7 +2,7 @@
 
 #include "Account.h" //for create account
 
-class User : Account
+class User : public Account
 {
 private:
     string firstName;

@@ -28,13 +28,24 @@ Account BankLogic::getCurrentUser() {
 	return *currentUser;
 }
 
-void BankLogic::setCurrentUser(Account u) {
+void BankLogic::setCurrentUser(User u) {
 
 	// If the current user is not null, delete it
-	if (currentUser) {
+	if (currentUser != NULL) {
 
 		delete currentUser;
 	}
 
-	currentUser = new Account(u);
+    currentUser = new User(u);
+}
+
+void BankLogic::setCurrentUser(Manager m) {
+
+    // If the current user is not null, delete it
+    if (currentUser != NULL) {
+
+        delete currentUser;
+    }
+
+    currentUser = new Manager(m);
 }
