@@ -2,6 +2,7 @@
 #include "User.h"
 #include "Manager.h"
 #include <iostream>
+#include <cstring>
 
 // Constructor of the BankStorage class
 // Handles file I/O for user and manager accounts
