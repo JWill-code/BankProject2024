@@ -1,8 +1,14 @@
+#include <iostream>
+#include <sstream>
+
 #include "BankStorage.h"
 #include "User.h"
 #include "Manager.h"
-#include <iostream>
-#include <cstring>
+
+// Static variable declaration
+std::string BankStorage::folderName;
+std::string BankStorage::usersFileName;
+std::string BankStorage::managersFileName;
 
 // Constructor of the BankStorage class
 // Handles file I/O for user and manager accounts
@@ -17,15 +23,21 @@ BankStorage::BankStorage(BankLogic *bankLogic) {
 
 /* User Data Functions */
 
-User BankStorage::loginUser(std::string uName, std::string pswd) const {
+bool BankStorage::loginUser(std::string uName, std::string pswd) const {
+
+    
 
     for (User existing : userList) {
 
         if (uName.compare(existing.getUsername()) == 0 && existing.checkPassword(pswd)) {
 
-            bankLogic->setCurrentUser(existing);
+            bankLogic->setCurrentUser(&existing);
+
+            return true;
         }
     }
+
+    return false;
 }
 
 bool BankStorage::addUser(User u) {
@@ -133,37 +145,24 @@ bool BankStorage::loadUsersFromFile(std::string fileName) {
         // Process a user from each line of the text file
         while (std::getline(inputStream, text)) {
 
-            // Vetor to hold data of the user being read from the file
-            std::vector<std::string> userData;
-
             // Debug print to console
             std::cout << "Read line: " << text << std::endl;
 
-            // Convert text to character array
-            char* text_as_chars = new char[text.size()];
-            for (int i = 0; i < text.size(); i++) {
+            // Vetor to hold data of the user being read from the file
+            std::vector<std::string> userData;
 
-                text_as_chars[i] = text[i];
-            }
+            // String stream holds the current line to be read and tokenized
+            std::stringstream strStream(text);
 
-            // Tokenize the read text given the tab character as the delimiter
-            char* token = strtok(text_as_chars, "\t");
+            // String capable of holding individual tokens 
+            std::string token;
 
-            // add each token to the user data vector
-            userData.push_back(token);
+            // Loop over the stringstream to get each tab-separated value
+            while (std::getline(strStream, token, '\t')) {
 
-            // Repeat tokenization for the rest of the character array
-            while (token != NULL) {
-
-                token = strtok(NULL, "\t");
+                // Add the current token to the user data vector
                 userData.push_back(token);
             }
-
-            // Delete pointer data if it is still allocated
-            if (text_as_chars != NULL)
-                delete[] text_as_chars;
-            if (token != NULL) 
-                delete token;
 
             // Validate each token
             if (userData.size() == 6) {
@@ -180,11 +179,19 @@ bool BankStorage::loadUsersFromFile(std::string fileName) {
                     // Attempt to create a new user given the information and add it to the user list
                     User u(id, userName, password, firstName, lastName, balance);
                     addUser(u);
-                }
-                catch(std::exception ex) {
 
-                    std::cout << "Failed to read in user";
+                    std::cout << "Added user..." << std::endl;
+                    u.printAccountSummary();
+                    std::cout << std::endl;
                 }
+                catch (std::exception ex) {
+
+                    std::cout << "Failed to read in user: Exception occurred while processing data" << std::endl;
+                }
+            }
+            else {
+
+                std::cout << "Failed to read in user: Not enough information" << std::endl;
             }
         }
 
@@ -200,15 +207,19 @@ bool BankStorage::loadUsersFromFile(std::string fileName) {
 
 /* Manager Data Functions */
 
-Manager BankStorage::loginManager(std::string uName, std::string pswd) const {
+bool BankStorage::loginManager(std::string uName, std::string pswd) const {
 
     for (Manager existing : managerList) {
 
         if (uName.compare(existing.getUsername()) == 0 && pswd.compare(existing.getPassword()) == 0) {
 
-            bankLogic->setCurrentUser(existing);
+            bankLogic->setCurrentUser(&existing);
+
+            return true;
         }
     }
+
+    return false;
 }
 
 bool BankStorage::saveManager(Manager m) {
@@ -225,7 +236,7 @@ bool BankStorage::saveManager(Manager m) {
     return false;
 }
 
-bool BankStorage::saveManagersToFile(std::string fileName = getManagerFilePath()) {
+bool BankStorage::saveManagersToFile(std::string fileName) {
 
     std::ofstream outputStream(fileName);
 
@@ -249,7 +260,7 @@ bool BankStorage::saveManagersToFile(std::string fileName = getManagerFilePath()
     return false;
 }
 
-bool BankStorage::loadManagersFromFile(std::string fileName = getManagerFilePath()) {
+bool BankStorage::loadManagersFromFile(std::string fileName) {
 
     std::ifstream inputStream(fileName);
 
@@ -260,37 +271,54 @@ bool BankStorage::loadManagersFromFile(std::string fileName = getManagerFilePath
         // Process a manager from each line of the text file
         while (std::getline(inputStream, text)) {
 
-            // Vetor to hold data of the manager being read from the file
-            std::vector<std::string> managerData;
-
             // Debug print to console
             std::cout << "Read line: " << text << std::endl;
 
-            // Convert text to character array
-            char* text_as_chars = new char[text.size()];
-            for (int i = 0; i < text.size(); i++) {
+            // Vetor to hold data of the user being read from the file
+            std::vector<std::string> managerData;
 
-                text_as_chars[i] = text[i];
-            }
+            // String stream holds the current line to be read and tokenized
+            std::stringstream strStream(text);
 
-            // Tokenize the read text given the tab character as the delimiter
-            char* token = strtok(text_as_chars, "\t");
+            // String capable of holding individual tokens 
+            std::string token;
 
-            // add each token to the manager data vector
-            managerData.push_back(token);
+            // Loop over the stringstream to get each tab-separated value
+            while (std::getline(strStream, token, '\t')) {
 
-            // Repeat tokenization for the rest of the character array
-            while (token != NULL) {
-
-                token = strtok(NULL, "\t");
+                // Add the current token to the manager data vector
                 managerData.push_back(token);
             }
 
-            // Delete pointer data if it is still allocated
-            if (text_as_chars != NULL)
-                delete[] text_as_chars;
-            if (token != NULL)
-                delete token;
+            // Validate each token
+            if (managerData.size() == 6) {
+
+                try {
+
+                    int id = std::stoi(managerData[0]);
+                    std::string userName = managerData[1];
+                    std::string password = managerData[2];
+                    std::string firstName = managerData[3];
+                    std::string lastName = managerData[4];
+                    double balance = std::stod(managerData[5]);
+
+                    // Attempt to create a new manager given the information and add it to the manager list
+                    Manager m(id, userName, password, firstName, lastName, balance);
+                    managerList.push_back(m);
+
+                    std::cout << "Added manager..." << std::endl;
+                    m.printAccountSummary();
+                    std::cout << std::endl;
+                }
+                catch (std::exception ex) {
+
+                    std::cout << "Failed to read in manager: Exception occurred while processing data" << std::endl;
+                }
+            }
+            else {
+
+                std::cout << "Failed to read in manager: Not enough information" << std::endl;
+            }
         }
 
         // Close the input stream

@@ -2,6 +2,8 @@
 
 #include "BankStorage.h"
 #include "Account.h"
+#include "User.h"
+#include "Manager.h"
 
 class BankStorage;
 
@@ -26,7 +28,6 @@ public:
 	/* Getters and Setters */
 
 	Account* getCurrentUser();
-	void setCurrentUser(User u);
-    void setCurrentUser(Manager m);
+	void setCurrentUser(Account* a);
 };
 

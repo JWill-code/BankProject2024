@@ -15,7 +15,6 @@ class BankStorage
 {
 private:
 
-
     /* Static file path information */
     static std::string folderName;
     static std::string usersFileName;
@@ -42,7 +41,7 @@ public:
 
 	/* User Data Functions */
 
-	User loginUser(std::string uName, std::string pswd) const;
+	bool loginUser(std::string uName, std::string pswd) const;
 	bool addUser(User u);
 	bool removeUser(int id);
 	User getUser(int id);
@@ -53,7 +52,7 @@ public:
 
 	/* Manager Data Functions */
 
-	Manager loginManager(std::string uName, std::string pswd) const;
+	bool loginManager(std::string uName, std::string pswd) const;
     bool saveManager(Manager m);
 
 	bool saveManagersToFile(std::string fileName = getManagerFilePath());
