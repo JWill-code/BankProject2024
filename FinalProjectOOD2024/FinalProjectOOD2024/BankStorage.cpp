@@ -21,7 +21,7 @@ User BankStorage::loginUser(std::string uName, std::string pswd) const {
 
     for (User existing : userList) {
 
-        if (uName.compare(existing.getUsername()) == 0 && pswd.compare(existing.getPassword()) == 0) {
+        if (uName.compare(existing.getUsername()) == 0 && existing.checkPassword(pswd)) {
 
             bankLogic->setCurrentUser(existing);
         }
@@ -33,15 +33,19 @@ bool BankStorage::addUser(User u) {
     // Check that the user is not already in the user list
 	for (User existing : userList) {
 
-        if (uName.compare(existing.getUsername()) == 0 && pswd.compare(existing.getPassword()) == 0) {
+        // Compare existing usernames
+        if (u.getUsername().compare(existing.getUsername()) == 0) {
 
             return false;
         }
     }
 
-    userList.push_back(u);
+    // Add 1 to the static accountNum variable
+    u.add();
 
-    return false;
+    userList.push_back(u);
+    
+    return true;
 }
 
 bool BankStorage::removeUser(int id) {
@@ -52,6 +56,10 @@ bool BankStorage::removeUser(int id) {
         // If the user is found in the list, remove it
         if ((*i).getID() == id) {
 
+            // Subtract 1 from the static accountNum variable
+            (*i).remove();
+
+            // Remove the user from the list
             userList.erase(i);
             return true;
         }
@@ -77,6 +85,7 @@ User BankStorage::getUser(int id) {
 
 bool BankStorage::saveUser(User u) {
 
+    // Check that the user already exists in the system, otherwise the user cannot be saved
     for (int i = 0; i < userList.size(); i++) {
 
         if (userList[i].getID() == u.getID()) {
@@ -155,6 +164,28 @@ bool BankStorage::loadUsersFromFile(std::string fileName = getUserFilePath()) {
                 delete[] text_as_chars;
             if (token != NULL) 
                 delete token;
+
+            // Validate each token
+            if (userData.size() == 6) {
+
+                try {
+
+                    int id = std::stoi(userData[0]);
+                    std::string userName = userData[1];
+                    std::string password = userData[2];
+                    std::string firstName = userData[3];
+                    std::string lastName = userData[4];
+                    double balance = std::stod(userData[5]);
+
+                    // Attempt to create a new user given the information and add it to the user list
+                    User u(id, userName, password, firstName, lastName, balance);
+                    addUser(u);
+                }
+                catch(std::exception ex) {
+
+                    std::cout << "Failed to read in user";
+                }
+            }
         }
 
         // Close the input stream
