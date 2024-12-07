@@ -31,6 +31,11 @@ private:
 
 public:
 
+    /* Static Data for File Storage Information */
+
+    static std::string getUserFilePath();
+    static std::string getManagerFilePath();
+
 	/* Constructor */
 
 	BankStorage(BankLogic *bankLogic);
@@ -43,22 +48,15 @@ public:
 	User getUser(int id);
     bool saveUser(User u);
 
-    bool saveUsersToFile(std::string fileName);
-    bool loadUsersFromFile(std::string fileName);
+    bool saveUsersToFile(std::string fileName = getUserFilePath());
+    bool loadUsersFromFile(std::string fileName = getUserFilePath());
 
 	/* Manager Data Functions */
 
 	Manager loginManager(std::string uName, std::string pswd) const;
     bool saveManager(Manager m);
 
-	bool saveManagersToFile(std::string fileName);
-	bool loadManagersFromFile(std::string fileName);
-
-
-    /* Static Data for File Storage Information */
-
-    static std::string getUserFilePath();
-    static std::string getManagerFilePath();
-
+	bool saveManagersToFile(std::string fileName = getManagerFilePath());
+	bool loadManagersFromFile(std::string fileName = getManagerFilePath());
 };
 

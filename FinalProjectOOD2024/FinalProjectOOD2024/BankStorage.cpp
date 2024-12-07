@@ -98,7 +98,7 @@ bool BankStorage::saveUser(User u) {
     return false;
 }
 
-bool BankStorage::saveUsersToFile(std::string fileName = getUserFilePath()) {
+bool BankStorage::saveUsersToFile(std::string fileName) {
 
     std::ofstream outputStream(fileName);
 
@@ -122,7 +122,7 @@ bool BankStorage::saveUsersToFile(std::string fileName = getUserFilePath()) {
     return false;
 }
 
-bool BankStorage::loadUsersFromFile(std::string fileName = getUserFilePath()) {
+bool BankStorage::loadUsersFromFile(std::string fileName) {
 
     std::ifstream inputStream(fileName);
 

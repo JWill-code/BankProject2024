@@ -4,6 +4,7 @@
 BankLogic::BankLogic() {
 
 	bankStorage = new BankStorage(this);
+    bankStorage->loadUsersFromFile();
 }
 
 void BankLogic::displayBankMenu() {
@@ -23,9 +24,9 @@ void BankLogic::displayManagerMenu() {
 
 /* Getters and Setters */
 
-Account BankLogic::getCurrentUser() {
+Account* BankLogic::getCurrentUser() {
 
-	return *currentUser;
+	return currentUser;
 }
 
 void BankLogic::setCurrentUser(User u) {
