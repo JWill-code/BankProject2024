@@ -3,14 +3,14 @@
 #include "User.h"
 #include "Account.h"
 
-User::User(int id, std::string userName, std::string password, std::string firstName, std::string lastName, int balance) 
+User::User(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance) 
 : Account(id, userName, password, firstName, lastName, balance) 
 {
     // Set this account's data members to the provided information
 
 }
 
-User::User(const User& other) : Account(other) 
+User::User(const Account& other) : Account(other) 
 {
     // Copy data members of the other account to this new one
 }

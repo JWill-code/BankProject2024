@@ -3,7 +3,7 @@
 /* Constructors */
 int Account::numAccounts = 0;
 
-Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, int balance)
+Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance)
 {
     this->id = id;
     this->userName = userName;

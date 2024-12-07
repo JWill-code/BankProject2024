@@ -17,7 +17,7 @@ private:
 
 public:
     /* Constructors */
-    Account(int id, std::string userName, std::string firstName, std::string lastName, std::string password, int balance);
+    Account(int id, std::string userName, std::string firstName, std::string lastName, std::string password, double balance);
     Account(const Account &other);
 
     /* Account Validation */

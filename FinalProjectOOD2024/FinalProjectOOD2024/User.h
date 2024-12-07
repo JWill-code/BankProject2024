@@ -14,8 +14,8 @@ private:
     // int balance;
 public:
     /* Constructors */
-    User(int id, std::string userName, std::string password, std::string firstName, std::string lastName, int balance); //contains User info and variables
-    User(const User& other);
+    User(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance); //contains User info and variables
+    User(const Account& other);
 
     // Override for pure virtual function
     void printAccountSummary() override;
