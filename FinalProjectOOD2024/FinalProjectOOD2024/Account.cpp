@@ -10,7 +10,7 @@ Account::Account(int id, std::string userName, std::string password, std::string
     this->firstName = firstName;
     this->lastName = lastName;
     this->password = password;
-    this->balance = 0;
+    this->balance = balance;
     // Set this account's data members to the provided information
 }
 
@@ -22,6 +22,7 @@ Account::Account(const Account &other)
     this->firstName = other.firstName;
     this->lastName = other.lastName;
     this->password = other.password;
+    this->balance = other.balance;
 }
 
 /* Account Validation */
