@@ -3,8 +3,8 @@
 #include "User.h"
 #include "Account.h"
 
-User::User(int id, std::string userName, std::string password, std::string firstName, std::string lastName) 
-: Account(id, userName, password, firstName, lastName) 
+User::User(int id, std::string userName, std::string password, std::string firstName, std::string lastName, int balance) 
+: Account(id, userName, password, firstName, lastName, balance) 
 {
     // Set this account's data members to the provided information
 

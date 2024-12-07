@@ -3,9 +3,8 @@
 /* Constructors */
 int Account::numAccounts = 0;
 
-Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName)
+Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, int balance)
 {
-    numAccounts++;
     this->id = id;
     this->userName = userName;
     this->firstName = firstName;
@@ -25,15 +24,20 @@ Account::Account(const Account &other)
     this->password = other.password;
 }
 
-int Account::getNumAccounts() const
-{
-    return numAccounts;
+/* Account Validation */
+
+bool Account::checkPassword(std::string inputted_password) {
+
+    // Check that the inputted password matches the account's password
+    if (password.compare(inputted_password) == 0) {
+
+        return true;
+    }
+
+    return false;
 }
 
-int Account::getID() const
-{
-    return this->id;
-}
+/* Transaction Methods */
 
 bool Account::withdraw(double amount)
 {
@@ -44,6 +48,7 @@ bool Account::withdraw(double amount)
     balance -= amount;
     return true;
 }
+
 bool Account::deposit(double amount)
 {
     if (amount < 0)
@@ -52,4 +57,51 @@ bool Account::deposit(double amount)
     }
     balance += amount;
     return true;
+}
+
+/* Getters and Setters */
+
+int Account::getNumAccounts() const
+{
+    return numAccounts;
+}
+
+int Account::getID() const
+{
+    return this->id;
+}
+
+std::string Account::getUsername() {
+
+    return userName;
+}
+
+std::string Account::getPassword() {
+
+    return password;
+}
+
+std::string Account::getFirstName() {
+
+    return firstName;
+}
+
+std::string Account::getLastName() {
+
+    return lastName;
+}
+
+double Account::getBalance() {
+
+    return balance;
+}
+
+void Account::add() {
+
+    numAccounts++;
+}
+
+void Account::remove() {
+
+    numAccounts--;
 }
