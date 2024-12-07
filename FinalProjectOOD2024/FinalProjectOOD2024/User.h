@@ -5,14 +5,19 @@
 class User : public Account
 {
 private:
-    string firstName;
-    string lastName;
-    string userName;
-    string password;
-    int id;
+    // Data embers inherited from Account class
+    // string firstName;
+    // string lastName;
+    // string userName;
+    // string password;
+    // int id;
 public:
-    User(std::string firstName, std::string lastName, int id, std::string userName, std::string password); //contains User info and variables
+    /* Constructors */
+    User(int id, std::string userName, std::string password, std::string firstName, std::string lastName); //contains User info and variables
     User(const User& other);
-    //constructors
+
+    // Override for pure virtual function
+    void printAccountSummary() override;
+    
 };
 
