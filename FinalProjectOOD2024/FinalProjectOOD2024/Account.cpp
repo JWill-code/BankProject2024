@@ -27,10 +27,12 @@ Account::Account(const Account &other)
 
 /* Account Validation */
 
-bool Account::checkPassword(std::string inputted_password) {
+bool Account::checkPassword(std::string inputted_password) 
+{
 
     // Check that the inputted password matches the account's password
-    if (password.compare(inputted_password) == 0) {
+    if (password.compare(inputted_password) == 0) 
+    {
 
         return true;
     }
@@ -72,37 +74,44 @@ int Account::getID() const
     return this->id;
 }
 
-std::string Account::getUsername() {
+std::string Account::getUsername() 
+{
 
     return userName;
 }
 
-std::string Account::getPassword() {
+std::string Account::getPassword() 
+{
 
     return password;
 }
 
-std::string Account::getFirstName() {
+std::string Account::getFirstName() 
+{
 
     return firstName;
 }
 
-std::string Account::getLastName() {
+std::string Account::getLastName() 
+{
 
     return lastName;
 }
 
-double Account::getBalance() {
+double Account::getBalance() 
+{
 
     return balance;
 }
 
-void Account::add() {
+void Account::add() 
+{
 
     numAccounts++;
 }
 
-void Account::remove() {
+void Account::remove() 
+{
 
     numAccounts--;
 }

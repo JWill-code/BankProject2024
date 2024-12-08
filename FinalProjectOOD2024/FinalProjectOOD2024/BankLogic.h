@@ -12,8 +12,8 @@ class BankLogic
 private:
 
 	/* References to other classes */
-	BankStorage *bankStorage;
-	Account *currentUser;
+	BankStorage* bankStorage;
+	Account* currentUser;
 
 	void displayBankMenu();
 	void displayUserMenu();
@@ -28,6 +28,7 @@ public:
 	/* Getters and Setters */
 
 	Account* getCurrentUser();
-	void setCurrentUser(Account* a);
+	void setCurrentUser(User* u);
+    void setCurrentUser(Manager* m);
 };
 

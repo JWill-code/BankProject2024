@@ -26,7 +26,8 @@ Manager::Manager(const Account& other) : Account(other)
     this->password = other.password; //initialize
 }
 
-void Manager::printAccountSummary() {
+void Manager::printAccountSummary() 
+{
 
     std::cout << "Account Summary for " << getUsername() << " [ID = " << getID() << "] [Manager]:\n"
         << "Name: " << getFirstName() << " " << getLastName() << "\n"
