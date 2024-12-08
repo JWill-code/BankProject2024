@@ -28,6 +28,7 @@ public:
 	/* Getters and Setters */
 
 	Account* getCurrentUser();
-	void setCurrentUser(Account* a);
+	void setCurrentUser(User* u);
+    void setCurrentUser(Manager* m);
 };
 

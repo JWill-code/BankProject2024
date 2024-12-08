@@ -1,12 +1,19 @@
+#include <iostream>
+
 #include "BankLogic.h"
 
 // Constructor of the main bank application
 BankLogic::BankLogic() {
 
+    // Fix Visual Studio warning about uninitialized member variable
+    currentUser = NULL;
+
+    // Initialize the bank storage to get user and manager data
 	bankStorage = new BankStorage(this);
     bankStorage->loadUsersFromFile();
-    
-    
+    bankStorage->loadManagersFromFile();
+
+
 }
 
 void BankLogic::displayBankMenu() 
@@ -35,7 +42,7 @@ Account* BankLogic::getCurrentUser()
 	return currentUser;
 }
 
-void BankLogic::setCurrentUser(Account* a) 
+void BankLogic::setCurrentUser(User* u) 
 {
 
 	// If the current user is not null, delete it
@@ -45,14 +52,18 @@ void BankLogic::setCurrentUser(Account* a)
 		delete currentUser;
 	}
 
-    if (typeid(a) == typeid(User)) 
+    currentUser = new User(*u);
+}
+
+void BankLogic::setCurrentUser(Manager* m)
+{
+
+    // If the current user is not null, delete it
+    if (currentUser != NULL)
     {
 
-        currentUser = new User(*a);
+        delete currentUser;
     }
-    else 
-    {
 
-        currentUser = new Manager(*a);
-    }
+    currentUser = new Manager(*m);
 }

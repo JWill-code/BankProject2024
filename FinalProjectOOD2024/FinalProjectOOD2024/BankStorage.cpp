@@ -27,8 +27,6 @@ BankStorage::BankStorage(BankLogic *bankLogic)
 bool BankStorage::loginUser(std::string uName, std::string pswd) const 
 {
 
-    
-
     for (User existing : userList) 
     {
 
