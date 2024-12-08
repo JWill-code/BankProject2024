@@ -12,8 +12,8 @@ class BankLogic
 private:
 
 	/* References to other classes */
-	BankStorage *bankStorage;
-	Account *currentUser;
+	BankStorage* bankStorage;
+	Account* currentUser;
 
 	void displayBankMenu();
 	void displayUserMenu();

@@ -44,7 +44,7 @@ public:
 	bool loginUser(std::string uName, std::string pswd) const;
 	bool addUser(User u);
 	bool removeUser(int id);
-	User getUser(int id);
+	User* getUser(int id);
     bool saveUser(User u);
 
     bool saveUsersToFile(std::string fileName = getUserFilePath());

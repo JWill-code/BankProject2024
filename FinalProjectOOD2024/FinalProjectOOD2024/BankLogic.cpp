@@ -5,43 +5,53 @@ BankLogic::BankLogic() {
 
 	bankStorage = new BankStorage(this);
     bankStorage->loadUsersFromFile();
+    
+    
 }
 
-void BankLogic::displayBankMenu() {
+void BankLogic::displayBankMenu() 
+{
 
 
 }
 
-void BankLogic::displayUserMenu() {
+void BankLogic::displayUserMenu() 
+{
 
 
 }
 
-void BankLogic::displayManagerMenu() {
+void BankLogic::displayManagerMenu() 
+{
 
 
 }
 
 /* Getters and Setters */
 
-Account* BankLogic::getCurrentUser() {
+Account* BankLogic::getCurrentUser() 
+{
 
 	return currentUser;
 }
 
-void BankLogic::setCurrentUser(Account* a) {
+void BankLogic::setCurrentUser(Account* a) 
+{
 
 	// If the current user is not null, delete it
-	if (currentUser != NULL) {
+	if (currentUser != NULL) 
+    {
 
 		delete currentUser;
 	}
 
-    if (typeid(a) == typeid(User)) {
+    if (typeid(a) == typeid(User)) 
+    {
 
         currentUser = new User(*a);
     }
-    else {
+    else 
+    {
 
         currentUser = new Manager(*a);
     }
