@@ -10,7 +10,8 @@ Manager::Manager(int id, std::string userName, std::string password, std::string
     // Set this account's data members to the provided information
     //object
     //when I am trying to debug this it says that the private member cannot be accessed by
-    //account::firstName, etc.
+    //account::firstName, etc. 
+    //Use getFirstName instead.
     this->firstName = firstName;
     this->lastName = lastName;
     this->id = id;
