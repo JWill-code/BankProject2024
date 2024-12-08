@@ -5,6 +5,8 @@
 // Constructor of the main bank application
 BankLogic::BankLogic() {
 
+    isRunning = true;
+
     // Fix Visual Studio warning about uninitialized member variable
     currentUser = NULL;
 
@@ -13,7 +15,10 @@ BankLogic::BankLogic() {
     bankStorage->loadUsersFromFile();
     bankStorage->loadManagersFromFile();
 
+    while (isRunning) {
 
+        displayBankMenu();
+    }
 }
 
 void BankLogic::displayBankMenu() 
