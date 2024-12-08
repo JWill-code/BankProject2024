@@ -17,10 +17,10 @@ int main() {
 	}
     //
     int functNum;
-    cout << "Type integer for associated function" << endl;
-    cout << "1. User Login" << endl;
-    cout << "2. Create Account" << endl;
-    cout << "3. Manager Login" << endl;
-    cout << "4. Exit " << endl;
-    cin >> functNum;
+    std::cout << "Type integer for associated function" << std::endl;
+    std::cout << "1. User Login" << std::endl;
+    std::cout << "2. Create Account" << std::endl;
+    std::cout << "3. Manager Login" << std::endl;
+    std::cout << "4. Exit " << std::endl;
+    std::cin >> functNum;
 }
