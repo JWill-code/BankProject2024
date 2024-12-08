@@ -5,14 +5,20 @@
 class Manager : public Account
 {
 private:
-    string firstName;
-    string lastName;
-    string password;
-    
-    int id;
+    // Data embers inherited from Account class
+    // int id
+    // string userName;
+    // string password;
+    // string firstName;
+    // string lastName;
+    // int balance;
 
 public:
-    Manager(std::string firstName, std::string lastName, int id, std::string password);
-    Manager(const Manager& other);
+    /* Constructors */
+    Manager(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance);
+    Manager(const Account& other);
+
+    // Override for pure virtual function
+    void printAccountSummary() override;
 };
 
