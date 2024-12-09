@@ -166,9 +166,6 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
         while (std::getline(inputStream, text)) 
         {
 
-            // Debug print to console
-            std::cout << "Read line: " << text << std::endl;
-
             // Vetor to hold data of the user being read from the file
             std::vector<std::string> userData;
 
@@ -203,21 +200,16 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
                     // Attempt to create a new user given the information and add it to the user list
                     User u(id, userName, password, firstName, lastName, balance);
                     addUser(u);
-
-                    std::cout << "Added user..." << std::endl;
-                    u.printAccountSummary();
-                    std::cout << std::endl;
                 }
                 catch (std::exception ex) 
                 {
 
-                    std::cout << "Failed to read in user: Exception occurred while processing data" << std::endl;
                 }
             }
             else 
             {
 
-                std::cout << "Failed to read in user: Not enough information" << std::endl;
+                
             }
         }
 
@@ -308,10 +300,6 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
         // Process a manager from each line of the text file
         while (std::getline(inputStream, text)) 
         {
-
-            // Debug print to console
-            std::cout << "Read line: " << text << std::endl;
-
             // Vetor to hold data of the user being read from the file
             std::vector<std::string> managerData;
 
@@ -346,21 +334,17 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
                     // Attempt to create a new manager given the information and add it to the manager list
                     Manager m(id, userName, password, firstName, lastName, balance);
                     managerList.push_back(m);
-
-                    std::cout << "Added manager..." << std::endl;
-                    m.printAccountSummary();
-                    std::cout << std::endl;
                 }
                 catch (std::exception ex) 
                 {
 
-                    std::cout << "Failed to read in manager: Exception occurred while processing data" << std::endl;
+                    
                 }
             }
             else 
             {
 
-                std::cout << "Failed to read in manager: Not enough information" << std::endl;
+                
             }
         }
 

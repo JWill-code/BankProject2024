@@ -11,6 +11,8 @@ class BankLogic
 {
 private:
 
+    bool isRunning;
+
 	/* References to other classes */
 	BankStorage* bankStorage;
 	Account* currentUser;
