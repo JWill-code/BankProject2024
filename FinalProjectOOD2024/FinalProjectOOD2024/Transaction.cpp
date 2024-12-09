@@ -1,13 +1,13 @@
 #include "Transaction.h"
 
 // Static variables
-std::string Transaction::depositText = "Deposited: $";
-std::string Transaction::withdrawalText = "Withdrew: $";
+std::string Transaction::depositText = "Deposit: +$";
+std::string Transaction::withdrawalText = "Withdrawal: -$";
 std::string Transaction::unknownTypeText = "Unknown Transaction";
 
 /* Constructor */
 
-Transaction::Transaction(int type, int amount) 
+Transaction::Transaction(int type, double amount) 
 {
     if (type == 1 || type == 2) {
 

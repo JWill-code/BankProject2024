@@ -60,6 +60,10 @@ bool Account::withdraw(double amount)
     }
 
     this->balance -= amount;
+
+    // Add transaction record (withdrawal)
+    this->transactions.push_back(Transaction(2, amount));
+
     return true;
 }
 
@@ -71,6 +75,10 @@ bool Account::deposit(double amount)
     }
 
     this->balance += amount;
+
+    // Add transaction record (deposit)
+    this->transactions.push_back(Transaction(1, amount));
+
     return true;
 }
 

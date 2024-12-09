@@ -12,13 +12,13 @@ private:
 
     // The type of transaction and amount of money involved
     int transactionType;
-    int amount;
+    double amount;
 
 public:
 
     /* Constructor */
 
-    Transaction(int type, int amount);
+    Transaction(int type, double amount);
 
     /* Getters and Setters */
     int getTransactionType();
