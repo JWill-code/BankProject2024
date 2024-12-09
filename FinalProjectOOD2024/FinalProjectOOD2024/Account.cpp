@@ -3,7 +3,7 @@
 /* Constructors */
 int Account::numAccounts = 0;
 
-Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance,int type)
+Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance, int type)
 {
     if(type !=1 && type != 2){
     std::cout<<"invalid account type, checking account created"<<std::endl;
@@ -80,7 +80,7 @@ int Account::getID() const
     return this->id;
 }
 std::string Account::getAccountType(){
-if(this->type==1){
+if( this->type == 1 ){
 return "checkings";
 }
 return "savings";
@@ -117,14 +117,14 @@ double Account::getBalance()
 }
 
 bool Account::setAccountType(int type){
-if(type==1||type==2){
+if(type == 1 || type == 2){
     
   this->type=type;
   return true;
     
     }
     
-return false
+return false;
     
 }
 
