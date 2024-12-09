@@ -140,7 +140,8 @@ bool BankStorage::saveUsersToFile(std::string fileName)
         {
 
             std::string userDataString = std::to_string(u.getID()) + "\t" + u.getUsername() +
-                "\t" + u.getPassword() + "\t" + u.getFirstName() + "\t" + u.getLastName() + "\t" + std::to_string(u.getAccountTypeNum());
+                "\t" + u.getPassword() + "\t" + u.getFirstName() + "\t" + u.getLastName() +
+                "\t" + std::to_string(u.getBalance()) + "\t" + std::to_string(u.getAccountTypeNum()) + "\n";
             outputStream << userDataString;
         }
 
@@ -201,6 +202,8 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
                     // Attempt to create a new user given the information and add it to the user list
                     User u(id, userName, password, firstName, lastName, balance, type);
                     addUser(u);
+
+                    u.printAccountSummary();
                 }
                 catch (std::exception ex) 
                 {
@@ -276,7 +279,8 @@ bool BankStorage::saveManagersToFile(std::string fileName)
         {
 
             std::string managerDataString = std::to_string(m.getID()) + "\t" + m.getUsername() +
-                "\t" + m.getPassword() + "\t" + m.getFirstName() + "\t" + m.getLastName() + "\t" + std::to_string(m.getAccountTypeNum());
+                "\t" + m.getPassword() + "\t" + m.getFirstName() + "\t" + m.getLastName() +
+                "\t" + std::to_string(m.getBalance()) + "\t" + std::to_string(m.getAccountTypeNum()) + "\n";
             outputStream << managerDataString;
         }
 
@@ -319,7 +323,7 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
             }
 
             // Validate each token
-            if (managerData.size() == 6) 
+            if (managerData.size() == 7) 
             {
 
                 try 
@@ -336,6 +340,8 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
                     // Attempt to create a new manager given the information and add it to the manager list
                     Manager m(id, userName, password, firstName, lastName, balance, type);
                     managerList.push_back(m);
+
+                    m.printAccountSummary();
                 }
                 catch (std::exception ex) 
                 {

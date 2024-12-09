@@ -21,6 +21,9 @@ BankLogic::BankLogic()
 
         displayBankMenu();
     }
+
+    bankStorage->saveUsersToFile();
+    bankStorage->saveManagersToFile();
 }
 
 void BankLogic::displayBankMenu() 
@@ -77,8 +80,6 @@ void BankLogic::displayBankMenu()
             break;
         }
         case 4:
-            bankStorage->saveUsersToFile();
-            bankStorage->saveManagersToFile();
             isRunning = false;
             break;
     }
