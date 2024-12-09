@@ -4,7 +4,8 @@
 #include "Account.h"
 
 // Constructor of the main bank application
-BankLogic::BankLogic() {
+BankLogic::BankLogic() 
+{
 
     isRunning = true;
 

@@ -29,13 +29,14 @@ public:
     /* Getters and Setters */
     int getNumAccounts() const;
     int getID() const;
-    std::string getAccountType();
-    std::string getUsername();
-    std::string getPassword();
-    std::string getFirstName();
-    std::string getLastName();
+    std::string getAccountType() const;
+    int getAccountTypeNum();
+    std::string getUsername() const;
+    std::string getPassword() const;
+    std::string getFirstName() const;
+    std::string getLastName() const;
+    double getBalance() const;
     bool setAccountType(int type);
-    double getBalance();
 
     // Add/Subtract 1 from the total number of accounts
     void add();

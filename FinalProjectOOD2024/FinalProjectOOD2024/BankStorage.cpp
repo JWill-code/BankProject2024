@@ -140,7 +140,7 @@ bool BankStorage::saveUsersToFile(std::string fileName)
         {
 
             std::string userDataString = std::to_string(u.getID()) + "\t" + u.getUsername() +
-                "\t" + u.getPassword() + "\t" + u.getFirstName() + "\t" + u.getLastName();
+                "\t" + u.getPassword() + "\t" + u.getFirstName() + "\t" + u.getLastName() + "\t" + std::to_string(u.getAccountTypeNum());
             outputStream << userDataString;
         }
 
@@ -184,7 +184,7 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
             }
 
             // Validate each token
-            if (userData.size() == 6) 
+            if (userData.size() == 7) 
             {
 
                 try 
@@ -196,6 +196,7 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
                     std::string firstName = userData[3];
                     std::string lastName = userData[4];
                     double balance = std::stod(userData[5]);
+                    int type = std::stoi(userData[6]);
 
                     // Attempt to create a new user given the information and add it to the user list
                     User u(id, userName, password, firstName, lastName, balance, type);
@@ -275,7 +276,7 @@ bool BankStorage::saveManagersToFile(std::string fileName)
         {
 
             std::string managerDataString = std::to_string(m.getID()) + "\t" + m.getUsername() +
-                "\t" + m.getPassword() + "\t" + m.getFirstName() + "\t" + m.getLastName();
+                "\t" + m.getPassword() + "\t" + m.getFirstName() + "\t" + m.getLastName() + "\t" + std::to_string(m.getAccountTypeNum());
             outputStream << managerDataString;
         }
 
@@ -330,8 +331,8 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
                     std::string firstName = managerData[3];
                     std::string lastName = managerData[4];
                     double balance = std::stod(managerData[5]);
-                    //int type = account type
-                    // //1 or 2
+                    int type = std::stoi(managerData[6]);
+
                     // Attempt to create a new manager given the information and add it to the manager list
                     Manager m(id, userName, password, firstName, lastName, balance, type);
                     managerList.push_back(m);
