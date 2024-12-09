@@ -10,7 +10,7 @@ endif()
 set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCE_CODE_DIR "${PROJECT_SOURCE_DIR}/FinalProjectOOD2024")
-set(SOURCE_CODE_FILENAMES Account User Manager BankStorage BankLogic)
+set(SOURCE_CODE_FILENAMES Transaction Account User Manager BankStorage BankLogic)
 
 set(outputDir "${SOURCE_CODE_DIR}/bin/${CMAKE_SYSTEM_NAME}${bitness}/${CMAKE_BUILD_TYPE}")
 
