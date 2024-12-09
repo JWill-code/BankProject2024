@@ -6,18 +6,17 @@ class Account
 {
 private:
     static int numAccounts;
-
+    int type;
     int id;
     std::string userName;
     std::string password;
-
     std::string firstName;
     std::string lastName;
     double balance;
 
 public:
     /* Constructors */
-    Account(int id, std::string userName, std::string firstName, std::string lastName, std::string password, double balance);
+    Account(int id, std::string userName, std::string firstName, std::string lastName, std::string password, double balance, int type);
     Account(const Account &other);
 
     /* Account Validation */
@@ -30,11 +29,12 @@ public:
     /* Getters and Setters */
     int getNumAccounts() const;
     int getID() const;
+    std::string getAccountType();
     std::string getUsername();
     std::string getPassword();
     std::string getFirstName();
     std::string getLastName();
-
+    bool setAccountType(int type);
     double getBalance();
 
     // Add/Subtract 1 from the total number of accounts
