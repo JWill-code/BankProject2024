@@ -1,11 +1,16 @@
 #pragma once
 
 #include <string>
+#include <vector>
+#include "Transaction.h"
 
 class Account
 {
 private:
+    // Number of accounts currently loaded
     static int numAccounts;
+
+    // Standard account data
     int type;
     int id;
     std::string userName;
@@ -13,6 +18,10 @@ private:
     std::string firstName;
     std::string lastName;
     double balance;
+
+protected:
+    // List of transactions completed in this session
+    std::vector<Transaction> transactions;
 
 public:
     /* Constructors */

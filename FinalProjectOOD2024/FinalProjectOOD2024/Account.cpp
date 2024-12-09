@@ -1,8 +1,11 @@
 #include "Account.h"
 #include <iostream>
 #include "User.h"
-/* Constructors */
+
+// Static variable
 int Account::numAccounts = 0;
+
+/* Constructors */
 
 Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance, int type)
 {
