@@ -3,8 +3,8 @@
 #include "User.h"
 #include "Account.h"
 
-User::User(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance) 
-    : Account(id, userName, password, firstName, lastName, balance) 
+User::User(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance, int type) 
+    : Account(id, userName, password, firstName, lastName, balance, type) 
 {
     // Set this account's data members to the provided information
     //possible array.
@@ -26,5 +26,5 @@ void User::printAccountSummary()
 
     std::cout << "Account Summary for " << getUsername() << " [ID = " << getID() << "]:\n"
         << "Name: " << getFirstName() << " " << getLastName() << "\n"
-        << "Balance: $" << getBalance() << std::endl;
+        << "Balance: $" << getBalance() << "\n" << "Account type: " << getAccountType() << std::endl;
 }
