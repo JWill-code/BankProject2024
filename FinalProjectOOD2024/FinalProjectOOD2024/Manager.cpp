@@ -20,5 +20,5 @@ void Manager::printAccountSummary()
 
     std::cout << "Account Summary for " << getUsername() << " [ID = " << getID() << "] [Manager]:\n"
         << "Name: " << getFirstName() << " " << getLastName() << "\n"
-        << "Balance: $" << getBalance() << "Account type: " << getAccountType() <<std::endl;
+        << "Balance: $" << getBalance() << "\n" << "Account type: " << getAccountType() <<std::endl;
 }
