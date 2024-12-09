@@ -10,14 +10,13 @@ private:
     int id;
     std::string userName;
     std::string password;
-
     std::string firstName;
     std::string lastName;
     double balance;
 
 public:
     /* Constructors */
-    Account(int id, std::string userName, std::string firstName, std::string lastName, std::string password, double balance,int type);
+    Account(int id, std::string userName, std::string firstName, std::string lastName, std::string password, double balance, int type);
     Account(const Account &other);
 
     /* Account Validation */
@@ -35,7 +34,7 @@ public:
     std::string getPassword();
     std::string getFirstName();
     std::string getLastName();
-
+    void setAccountType();
     double getBalance();
 
     // Add/Subtract 1 from the total number of accounts
