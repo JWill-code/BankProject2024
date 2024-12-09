@@ -116,6 +116,19 @@ double Account::getBalance()
     return balance;
 }
 
+bool Account::setAccountType(int type){
+if(type==1||type==2){
+    
+  this->type=type;
+  return true;
+    
+    }
+    
+return false
+    
+}
+
+
 void Account::add() 
 {
 
