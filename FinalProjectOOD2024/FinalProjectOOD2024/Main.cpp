@@ -15,7 +15,7 @@ int main() {
 
 		std::cout << exception;
 	}
-    //
+    
     int functNum;
     std::cout << "Type integer for associated function" << std::endl;
     std::cout << "1. User Login" << std::endl;

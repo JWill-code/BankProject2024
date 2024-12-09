@@ -18,20 +18,30 @@ BankLogic::BankLogic() {
 
 void BankLogic::displayBankMenu() 
 {
+    
 
+    //copy stuff from main.cpp concept, use while loop added to control whether it displays
+    //type 1 or 2 for account type; checking or savings
+    int functNum;
+    std::cout << "Type integer for associated function" << std::endl;
+    std::cout << "1. User Login" << std::endl;
+    std::cout << "2. Create Account" << std::endl;
+    std::cout << "3. Manager Login" << std::endl;
+    std::cout << "4. Exit " << std::endl;
+    std::cin >> functNum;
 
 }
 
 void BankLogic::displayUserMenu() 
 {
 
-
+    //type 1 or 2 for account type; checking or savings
 }
 
 void BankLogic::displayManagerMenu() 
 {
 
-
+    
 }
 
 /* Getters and Setters */
