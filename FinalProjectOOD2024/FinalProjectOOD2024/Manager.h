@@ -15,7 +15,7 @@ private:
 
 public:
     /* Constructors */
-    Manager(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance);
+    Manager(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance,int type);
     Manager(const Account& other);
 
     // Override for pure virtual function
