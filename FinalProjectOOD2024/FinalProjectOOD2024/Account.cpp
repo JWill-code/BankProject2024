@@ -3,14 +3,19 @@
 /* Constructors */
 int Account::numAccounts = 0;
 
-Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance)
+Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance,int type)
 {
+    if(type !=1 && type != 2){
+    std::cout<<"invalid account type, checking account created"<<std::endl;
+    type =1 ;
+    }
     this->id = id;
     this->userName = userName;
     this->firstName = firstName;
     this->lastName = lastName;
     this->password = password;
     this->balance = balance;
+    this->type = type;
     // Set this account's data members to the provided information
 }
 
@@ -23,6 +28,7 @@ Account::Account(const Account &other)
     this->lastName = other.lastName;
     this->password = other.password;
     this->balance = other.balance;
+    this->type = other.type;
 }
 
 /* Account Validation */
@@ -72,6 +78,12 @@ int Account::getNumAccounts() const
 int Account::getID() const
 {
     return this->id;
+}
+std::string Account::getAccountType(){
+if(this->type==1){
+return "checkings";
+}
+return "savings";
 }
 
 std::string Account::getUsername() 
