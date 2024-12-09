@@ -21,10 +21,18 @@ User::User(const Account& other) : Account(other)
     //this->firstName = other.firstName;
 }
 
-void User::printAccountSummary() 
+void User::printAccountSummary() const
 {
-
+    // Print account information
     std::cout << "Account Summary for " << getUsername() << " [ID = " << getID() << "]:\n"
         << "Name: " << getFirstName() << " " << getLastName() << "\n"
         << "Balance: $" << getBalance() << "\n" << "Account type: " << getAccountType() << std::endl;
+
+    // List transaction history
+    std::cout << "Transaction history from this session:" << std::endl;
+
+    for (Transaction t : transactions)
+    {
+        std::cout << t.getTransactionText() << std::endl;
+    }
 }

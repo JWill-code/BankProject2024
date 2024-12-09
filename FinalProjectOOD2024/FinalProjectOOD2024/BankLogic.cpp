@@ -4,7 +4,8 @@
 #include "Account.h"
 
 // Constructor of the main bank application
-BankLogic::BankLogic() {
+BankLogic::BankLogic() 
+{
 
     isRunning = true;
 
@@ -20,6 +21,9 @@ BankLogic::BankLogic() {
 
         displayBankMenu();
     }
+
+    bankStorage->saveUsersToFile();
+    bankStorage->saveManagersToFile();
 }
 
 void BankLogic::displayBankMenu() 
@@ -76,8 +80,6 @@ void BankLogic::displayBankMenu()
             break;
         }
         case 4:
-            bankStorage->saveUsersToFile();
-            bankStorage->saveManagersToFile();
             isRunning = false;
             break;
     }
@@ -178,7 +180,7 @@ void BankLogic::displayManagerMenu()
 
 /* Getters and Setters */
 
-Account* BankLogic::getCurrentUser() 
+Account* BankLogic::getCurrentUser() const
 {
 
 	return currentUser;

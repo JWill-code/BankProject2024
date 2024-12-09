@@ -1,15 +1,21 @@
 #include "Account.h"
 #include <iostream>
 #include "User.h"
-/* Constructors */
+
+// Static variable
 int Account::numAccounts = 0;
+
+/* Constructors */
 
 Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance, int type)
 {
-    if(type !=1 && type != 2){
-    std::cout<<"invalid account type, checking account created"<<std::endl;
-    type =1 ;
+    if (type !=1 && type != 2)
+    {
+        std::cout << "invalid account type, checking account created" << std::endl;
+        type = 1;
     }
+
+    // Set this account's data members to the provided information
     this->id = id;
     this->userName = userName;
     this->firstName = firstName;
@@ -17,7 +23,6 @@ Account::Account(int id, std::string userName, std::string password, std::string
     this->password = password;
     this->balance = balance;
     this->type = type;
-    // Set this account's data members to the provided information
 }
 
 Account::Account(const Account &other)
@@ -34,13 +39,11 @@ Account::Account(const Account &other)
 
 /* Account Validation */
 
-bool Account::checkPassword(std::string inputted_password) 
+bool Account::checkPassword(std::string inputted_password) const
 {
-
     // Check that the inputted password matches the account's password
-    if (password.compare(inputted_password) == 0) 
+    if (this->password.compare(inputted_password) == 0) 
     {
-
         return true;
     }
 
@@ -55,7 +58,12 @@ bool Account::withdraw(double amount)
     {
         return false;
     }
-    balance -= amount;
+
+    this->balance -= amount;
+
+    // Add transaction record (withdrawal)
+    this->transactions.push_back(Transaction(2, amount));
+
     return true;
 }
 
@@ -65,7 +73,12 @@ bool Account::deposit(double amount)
     {
         return false;
     }
-    balance += amount;
+
+    this->balance += amount;
+
+    // Add transaction record (deposit)
+    this->transactions.push_back(Transaction(1, amount));
+
     return true;
 }
 
@@ -80,64 +93,67 @@ int Account::getID() const
 {
     return this->id;
 }
-std::string Account::getAccountType(){
-if( this->type == 1 ){
-return "checkings";
-}
-return "savings";
-}
 
-std::string Account::getUsername() 
+std::string Account::getAccountType() const
 {
+    if (this->type == 1 )
+    {
 
-    return userName;
+        return "checking";
+    }
+
+    return "savings";
 }
 
-std::string Account::getPassword() 
+int Account::getAccountTypeNum() 
 {
-
-    return password;
+    return this->type;
 }
 
-std::string Account::getFirstName() 
+std::string Account::getUsername() const 
 {
-
-    return firstName;
+    return this->userName;
 }
 
-std::string Account::getLastName() 
+std::string Account::getPassword() const
 {
-
-    return lastName;
+    return this->password;
 }
 
-double Account::getBalance() 
+std::string Account::getFirstName() const
 {
-
-    return balance;
+    return this->firstName;
 }
 
-bool Account::setAccountType(int type){
-if(type == 1 || type == 2){
-    
-  this->type=type;
-  return true;
-    
+std::string Account::getLastName() const
+{
+    return this->lastName;
+}
+
+double Account::getBalance() const
+{
+    return this->balance;
+}
+
+bool Account::setAccountType(int type)
+{
+    if (this->type == 1 || this->type == 2)
+    {
+        
+        this->type=type;
+        return true;
     }
     
-return false;
-    
+    return false;
 }
 
 
 void Account::add() 
 {
-
-    numAccounts++;
+    this->numAccounts++;
 }
 
 void Account::remove() 
 {
-
-    numAccounts--;
+    this->numAccounts--;
 }

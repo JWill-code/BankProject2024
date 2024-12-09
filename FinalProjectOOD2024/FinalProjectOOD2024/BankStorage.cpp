@@ -26,10 +26,8 @@ BankStorage::BankStorage(BankLogic *bankLogic)
 
 bool BankStorage::loginUser(std::string uName, std::string pswd) const 
 {
-
     for (User existing : userList) 
     {
-
         if (uName.compare(existing.getUsername()) == 0 && existing.checkPassword(pswd)) 
         {
 
@@ -44,15 +42,12 @@ bool BankStorage::loginUser(std::string uName, std::string pswd) const
 
 bool BankStorage::addUser(User u) 
 {
-
     // Check that the user is not already in the user list
 	for (User existing : userList) 
     {
-
-        // Compare existing usernames
-        if (u.getUsername().compare(existing.getUsername()) == 0) 
+        // Compare existing account IDs and usernames
+        if (u.getID() == existing.getID() || u.getUsername().compare(existing.getUsername()) == 0) 
         {
-
             return false;
         }
     }
@@ -67,15 +62,12 @@ bool BankStorage::addUser(User u)
 
 bool BankStorage::removeUser(int id) 
 {
-
     // Iterator loops over the list and can be dereferenced to get the user object
     for (auto i = userList.begin(); i < userList.end(); i++) 
     {
-
         // If the user is found in the list, remove it
         if ((*i).getID() == id) 
         {
-
             // Subtract 1 from the static accountNum variable
             (*i).remove();
 
@@ -88,17 +80,14 @@ bool BankStorage::removeUser(int id)
     return false;
 }
 
-User* BankStorage::getUser(int id) 
+User* BankStorage::getUser(int id)
 {
-
     // Iterator loops over the list and can be dereferenced to get the user object
     for (auto i = userList.begin(); i < userList.end(); i++) 
     {
-
         // If the user is found in the list, return it
         if ((*i).getID() == id) 
         {
-
             return &(*i);
         }
     }
@@ -109,14 +98,11 @@ User* BankStorage::getUser(int id)
 
 bool BankStorage::saveUser(User u) 
 {
-
     // Check that the user already exists in the system, otherwise the user cannot be saved
     for (int i = 0; i < userList.size(); i++) 
     {
-
         if (userList[i].getID() == u.getID()) 
         {
-
             userList[i] = u;
             return true;
         }
@@ -127,20 +113,18 @@ bool BankStorage::saveUser(User u)
 
 bool BankStorage::saveUsersToFile(std::string fileName) 
 {
-
     std::ofstream outputStream(fileName);
 
     std::string text;
 
     if (outputStream.is_open()) 
     {
-        
         // Write each user's data to the text file
         for (User u : userList) 
         {
-
             std::string userDataString = std::to_string(u.getID()) + "\t" + u.getUsername() +
-                "\t" + u.getPassword() + "\t" + u.getFirstName() + "\t" + u.getLastName();
+                "\t" + u.getPassword() + "\t" + u.getFirstName() + "\t" + u.getLastName() +
+                "\t" + std::to_string(u.getBalance()) + "\t" + std::to_string(u.getAccountTypeNum()) + "\n";
             outputStream << userDataString;
         }
 
@@ -154,18 +138,15 @@ bool BankStorage::saveUsersToFile(std::string fileName)
 
 bool BankStorage::loadUsersFromFile(std::string fileName) 
 {
-
     std::ifstream inputStream(fileName);
 
     std::string text;
 
     if (inputStream.is_open()) 
     {
-
         // Process a user from each line of the text file
         while (std::getline(inputStream, text)) 
         {
-
             // Vetor to hold data of the user being read from the file
             std::vector<std::string> userData;
 
@@ -184,33 +165,28 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
             }
 
             // Validate each token
-            if (userData.size() == 6) 
+            if (userData.size() == 7) 
             {
-
                 try 
                 {
-
                     int id = std::stoi(userData[0]);
                     std::string userName = userData[1];
                     std::string password = userData[2];
                     std::string firstName = userData[3];
                     std::string lastName = userData[4];
                     double balance = std::stod(userData[5]);
-                    int type = std::stod(userData[6]);
+                    int type = std::stoi(userData[6]);
 
                     // Attempt to create a new user given the information and add it to the user list
                     User u(id, userName, password, firstName, lastName, balance, type);
                     addUser(u);
+
+                    u.printAccountSummary();
                 }
                 catch (std::exception ex) 
                 {
-
+                    // Skip users whose data cannot be parsed
                 }
-            }
-            else 
-            {
-
-                
             }
         }
 
@@ -228,13 +204,10 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
 
 bool BankStorage::loginManager(std::string uName, std::string pswd) const 
 {
-
     for (Manager existing : managerList) 
     {
-
         if (uName.compare(existing.getUsername()) == 0 && existing.checkPassword(pswd)) 
         {
-
             bankLogic->setCurrentUser(&existing);
 
             return true;
@@ -246,10 +219,8 @@ bool BankStorage::loginManager(std::string uName, std::string pswd) const
 
 bool BankStorage::saveManager(Manager m) 
 {
-
     for (int i = 0; i < managerList.size(); i++) 
     {
-
         if (managerList[i].getID() == m.getID()) 
         {
 
@@ -263,20 +234,19 @@ bool BankStorage::saveManager(Manager m)
 
 bool BankStorage::saveManagersToFile(std::string fileName) 
 {
-
     std::ofstream outputStream(fileName);
 
     std::string text;
 
     if (outputStream.is_open()) 
     {
-
         // Write each user's data to the text file
         for (Manager m : managerList) 
         {
 
             std::string managerDataString = std::to_string(m.getID()) + "\t" + m.getUsername() +
-                "\t" + m.getPassword() + "\t" + m.getFirstName() + "\t" + m.getLastName();
+                "\t" + m.getPassword() + "\t" + m.getFirstName() + "\t" + m.getLastName() +
+                "\t" + std::to_string(m.getBalance()) + "\t" + std::to_string(m.getAccountTypeNum()) + "\n";
             outputStream << managerDataString;
         }
 
@@ -290,14 +260,12 @@ bool BankStorage::saveManagersToFile(std::string fileName)
 
 bool BankStorage::loadManagersFromFile(std::string fileName) 
 {
-
     std::ifstream inputStream(fileName);
 
     std::string text;
 
     if (inputStream.is_open()) 
     {
-
         // Process a manager from each line of the text file
         while (std::getline(inputStream, text)) 
         {
@@ -313,40 +281,33 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
             // Loop over the stringstream to get each tab-separated value
             while (std::getline(strStream, token, '\t')) 
             {
-
                 // Add the current token to the manager data vector
                 managerData.push_back(token);
             }
 
             // Validate each token
-            if (managerData.size() == 6) 
+            if (managerData.size() == 7) 
             {
-
                 try 
                 {
-
                     int id = std::stoi(managerData[0]);
                     std::string userName = managerData[1];
                     std::string password = managerData[2];
                     std::string firstName = managerData[3];
                     std::string lastName = managerData[4];
                     double balance = std::stod(managerData[5]);
-                    int type = std::stod(managerData[6]); //account generated
-                    // //1 or 2
+                    int type = std::stoi(managerData[6]);
+
                     // Attempt to create a new manager given the information and add it to the manager list
                     Manager m(id, userName, password, firstName, lastName, balance, type);
                     managerList.push_back(m);
+
+                    m.printAccountSummary();
                 }
                 catch (std::exception ex) 
                 {
-
-                    
+                    // Skip managers whose data cannot be parsed
                 }
-            }
-            else 
-            {
-
-                
             }
         }
 
@@ -361,13 +322,13 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
 
 /* Static Data for File Storage Information */
 
-std::string BankStorage::getUserFilePath() 
+std::string BankStorage::getUserFilePath()
 {
 
     return folderName + usersFileName;
 }
 
-std::string BankStorage::getManagerFilePath() 
+std::string BankStorage::getManagerFilePath()
 {
 
     return folderName + managersFileName;

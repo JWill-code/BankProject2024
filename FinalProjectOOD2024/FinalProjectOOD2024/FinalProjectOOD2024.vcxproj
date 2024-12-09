@@ -149,6 +149,7 @@
     <ClCompile Include="FileDemo.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Manager.cpp" />
+    <ClCompile Include="Transaction.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="BankLogic.h" />
     <ClInclude Include="BankStorage.h" />
     <ClInclude Include="Manager.h" />
+    <ClInclude Include="Transaction.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
