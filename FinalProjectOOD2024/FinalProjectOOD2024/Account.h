@@ -34,7 +34,7 @@ public:
     std::string getPassword();
     std::string getFirstName();
     std::string getLastName();
-    void setAccountType();
+    bool setAccountType(int type);
     double getBalance();
 
     // Add/Subtract 1 from the total number of accounts
