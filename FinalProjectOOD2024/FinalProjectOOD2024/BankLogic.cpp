@@ -54,8 +54,7 @@ void BankLogic::displayBankMenu()
         std::getline(std::cin, enteredPassword);
         bankStorage->loginUser(enteredUsername, enteredPassword);
         //sets user
-        //->setCurrentUser();
-        displayUserMenu();
+        displayUserMenu(); //already sets current user
         break;
     }
         case 2:
@@ -75,7 +74,7 @@ void BankLogic::displayBankMenu()
             std::getline(std::cin, mEnteredPassword);
             bankStorage->loginManager(mEnteredUsername, mEnteredPassword);
             
-            //setCurrentUser(); //manager setCurrentUser
+            //manager setCurrentUser
             displayManagerMenu();
             break;
         }
@@ -136,31 +135,34 @@ void BankLogic::displayManagerMenu()
     switch (functNum3) 
     {
     case 1:
-        //something
-
+        //deposit
+        double depositAmount;
+        std::cout << "enter quantity of money you want to deposit: " << std::endl;
+        std::cin >> depositAmount;
+        currentUser->deposit(depositAmount);
         break;
     case 2:
         //something
+        //withdraw
+        double withdrawAmount;
+        std::cout << "enter quantity of money you want to withdraw: " << std::endl;
+        std::cin >> withdrawAmount;
+        currentUser->withdraw(withdrawAmount);
         break;
     case 3: {
         //print account summary of given account number
         std::cout << "enter number of account you want a summary of: " << std::endl;
         //std::cin >> Account.id;
-        std::string enteredAccountNumber;
-        std::getline(std::cin, enteredAccountNumber);
+        std::string enteredAccountNumber1;
+        std::getline(std::cin, enteredAccountNumber1);
+        int enteredAccountNumber = std::stoi(enteredAccountNumber1); //convert string to int
         //loop through account list probably
-        int numAcc = currentUser->getNumAccounts();
-        for (int i =0; i<numAcc; i++) {
-            //iterate through list to find account/user/manager
-            
-
-            if (enteredAccountNumber ==/**/) {
-                setCurrentUser;
-            }
-        }
+        int numAcc = currentUser->getNumAccounts();//originally intended for for loop
         
+        User* SetUser = bankStorage->getUser(enteredAccountNumber); //from bankstorage
+        BankLogic::setCurrentUser(SetUser); //&setUser
         //this account is attached to the id number
-        //->printAccountSummary();
+        currentUser->printAccountSummary();
         //need manager title
         break;
     }
