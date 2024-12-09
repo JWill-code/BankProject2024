@@ -17,8 +17,16 @@ Manager::Manager(const Account& other) : Account(other)
 
 void Manager::printAccountSummary() 
 {
-
+    // Print account information
     std::cout << "Account Summary for " << getUsername() << " [ID = " << getID() << "] [Manager]:\n"
         << "Name: " << getFirstName() << " " << getLastName() << "\n"
         << "Balance: $" << getBalance() << "\n" << "Account type: " << getAccountType() <<std::endl;
+
+    // List transaction history
+    std::cout << "Transaction history from this session:" << std::endl;
+    
+    for (Transaction t : transactions)
+    {
+        std::cout << t.getTransactionText() << std::endl;
+    }
 }
