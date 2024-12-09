@@ -29,7 +29,7 @@ public:
 
 	/* Getters and Setters */
 
-	Account* getCurrentUser();
+	Account* getCurrentUser() const;
 	void setCurrentUser(User* u);
     void setCurrentUser(Manager* m);
 };

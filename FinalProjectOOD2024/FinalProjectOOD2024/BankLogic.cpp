@@ -175,7 +175,7 @@ void BankLogic::displayManagerMenu()
 
 /* Getters and Setters */
 
-Account* BankLogic::getCurrentUser() 
+Account* BankLogic::getCurrentUser() const
 {
 
 	return currentUser;

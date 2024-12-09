@@ -29,7 +29,7 @@ public:
     Account(const Account &other);
 
     /* Account Validation */
-    bool checkPassword(std::string inputted_password);
+    bool checkPassword(std::string inputted_password) const;
 
     /* Transaction Methods */
     bool withdraw(double amount);
@@ -52,5 +52,5 @@ public:
     void remove();
 
     // Pure virtual function, overridden in User and Manager classes
-    virtual void printAccountSummary() = 0;
+    virtual void printAccountSummary() const = 0;
 };

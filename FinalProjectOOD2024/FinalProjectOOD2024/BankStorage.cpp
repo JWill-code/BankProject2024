@@ -80,7 +80,7 @@ bool BankStorage::removeUser(int id)
     return false;
 }
 
-User* BankStorage::getUser(int id) 
+User* BankStorage::getUser(int id)
 {
     // Iterator loops over the list and can be dereferenced to get the user object
     for (auto i = userList.begin(); i < userList.end(); i++) 
@@ -322,13 +322,13 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
 
 /* Static Data for File Storage Information */
 
-std::string BankStorage::getUserFilePath() 
+std::string BankStorage::getUserFilePath()
 {
 
     return folderName + usersFileName;
 }
 
-std::string BankStorage::getManagerFilePath() 
+std::string BankStorage::getManagerFilePath()
 {
 
     return folderName + managersFileName;

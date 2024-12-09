@@ -15,7 +15,7 @@ Manager::Manager(const Account& other) : Account(other)
     // Copy data members of the other account to this new one
 }
 
-void Manager::printAccountSummary() 
+void Manager::printAccountSummary() const
 {
     // Print account information
     std::cout << "Account Summary for " << getUsername() << " [ID = " << getID() << "] [Manager]:\n"

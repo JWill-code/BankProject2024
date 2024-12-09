@@ -39,7 +39,7 @@ Account::Account(const Account &other)
 
 /* Account Validation */
 
-bool Account::checkPassword(std::string inputted_password) 
+bool Account::checkPassword(std::string inputted_password) const
 {
     // Check that the inputted password matches the account's password
     if (this->password.compare(inputted_password) == 0) 
