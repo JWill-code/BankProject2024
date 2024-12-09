@@ -8,10 +8,11 @@ Account::Account(int id, std::string userName, std::string password, std::string
 {
     if (type !=1 && type != 2)
     {
-        std::cout<<"invalid account type, checking account created"<<std::endl;
-        type =1;
+        std::cout << "invalid account type, checking account created" << std::endl;
+        type = 1;
     }
 
+    // Set this account's data members to the provided information
     this->id = id;
     this->userName = userName;
     this->firstName = firstName;
@@ -19,7 +20,6 @@ Account::Account(int id, std::string userName, std::string password, std::string
     this->password = password;
     this->balance = balance;
     this->type = type;
-    // Set this account's data members to the provided information
 }
 
 Account::Account(const Account &other)
