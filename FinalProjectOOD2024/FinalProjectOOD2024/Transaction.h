@@ -21,7 +21,7 @@ public:
     Transaction(int type, double amount);
 
     /* Getters and Setters */
-    int getTransactionType();
-    std::string getTransactionText();
+    int getTransactionType() const;
+    std::string getTransactionText() const;
 };
 

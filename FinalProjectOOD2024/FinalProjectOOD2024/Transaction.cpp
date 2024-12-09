@@ -9,11 +9,13 @@ std::string Transaction::unknownTypeText = "Unknown Transaction";
 
 Transaction::Transaction(int type, double amount) 
 {
-    if (type == 1 || type == 2) {
+    if (type == 1 || type == 2) 
+    {
 
         this->transactionType = type;
     }
-    else {
+    else 
+    {
 
         // Default to deposit type if an invalid type is provided
         this->transactionType = -1;
@@ -22,12 +24,12 @@ Transaction::Transaction(int type, double amount)
     this->amount = amount;
 }
 
-int Transaction::getTransactionType()
+int Transaction::getTransactionType() const
 {
     return this->transactionType;
 }
 
-std::string Transaction::getTransactionText()
+std::string Transaction::getTransactionText() const
 {   
     // Return different text depending on the type of transaction
     switch (this->transactionType)
