@@ -147,13 +147,18 @@ void BankLogic::displayManagerMenu()
         std::string enteredAccountNumber;
         std::getline(std::cin, enteredAccountNumber);
         //loop through account list probably
-        //int numAcc = getNumAccounts();
-        /*for (int i =0; i<numAcc; i++) {
-        
-        }*/
+        int numAcc = currentUser->getNumAccounts();
+        for (int i =0; i<numAcc; i++) {
+            //iterate through list to find account/user/manager
+            
+
+            if (enteredAccountNumber ==/**/) {
+                setCurrentUser;
+            }
+        }
         
         //this account is attached to the id number
-        //Manager->printAccountSummary();
+        //->printAccountSummary();
         //need manager title
         break;
     }
