@@ -5,7 +5,7 @@
 #include "Account.h"
 
 Manager::Manager(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance, int type)
-    : Account(id, userName, password, firstName, lastName, balance) 
+    : Account(id, userName, password, firstName, lastName, balance, type) 
 {
     // Set this account's data members to the provided information
 }

@@ -198,7 +198,7 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
                     double balance = std::stod(userData[5]);
 
                     // Attempt to create a new user given the information and add it to the user list
-                    User u(id, userName, password, firstName, lastName, balance);
+                    User u(id, userName, password, firstName, lastName, balance, type);
                     addUser(u);
                 }
                 catch (std::exception ex) 
@@ -330,9 +330,10 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
                     std::string firstName = managerData[3];
                     std::string lastName = managerData[4];
                     double balance = std::stod(managerData[5]);
-
+                    //int type = account type
+                    // //1 or 2
                     // Attempt to create a new manager given the information and add it to the manager list
-                    Manager m(id, userName, password, firstName, lastName, balance);
+                    Manager m(id, userName, password, firstName, lastName, balance, type);
                     managerList.push_back(m);
                 }
                 catch (std::exception ex) 

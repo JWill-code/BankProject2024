@@ -1,6 +1,7 @@
 #include <iostream>
 #include "BankStorage.h"
 #include "BankLogic.h"
+#include "Account.h"
 
 // Constructor of the main bank application
 BankLogic::BankLogic() {
@@ -35,28 +36,30 @@ void BankLogic::displayBankMenu()
     std::cin >> functNum;
     switch (functNum) //can't initialize apparently
     {
-        case 1:
-            //loginUser(); //string, string
-            //string enteredUsername = "";
-            std::cout << "enter username: " << std::endl;
-            //std::cin >> User.username;
-            
-            std::string enteredUsername;
-            std::getline(std::cin, enteredUsername);
-            std::cout << "enter password: " << std::endl;
-            //std::cin >> User.password;
-            std::string enteredPassword;
-            std::getline(std::cin, enteredPassword);
-            bankStorage->loginUser(enteredUsername, enteredPassword);
+    case 1: {
+        //loginUser(); //string, string
+        //string enteredUsername = "";
+        std::cout << "enter username: " << std::endl;
+        //std::cin >> User.username;
 
-            displayUserMenu();
-            break;
+        std::string enteredUsername;
+        std::getline(std::cin, enteredUsername);
+        std::cout << "enter password: " << std::endl;
+        //std::cin >> User.password;
+        std::string enteredPassword;
+        std::getline(std::cin, enteredPassword);
+        bankStorage->loginUser(enteredUsername, enteredPassword);
+        //sets user
+        //->setCurrentUser();
+        displayUserMenu();
+        break;
+    }
         case 2:
             //create account
             std::cout << "enter account information so we can create one: " << std::endl;
             currentUser->add();
             break;
-        case 3:
+        case 3: {
             //manager login
             std::cout << "enter username: " << std::endl;
             //std::cin >> Manager.username;
@@ -67,9 +70,11 @@ void BankLogic::displayBankMenu()
             std::string mEnteredPassword;
             std::getline(std::cin, mEnteredPassword);
             bankStorage->loginManager(mEnteredUsername, mEnteredPassword);
-
+            
+            //setCurrentUser(); //manager setCurrentUser
             displayManagerMenu();
             break;
+        }
         case 4:
             bankStorage->saveUsersToFile();
             bankStorage->saveManagersToFile();
@@ -120,32 +125,44 @@ void BankLogic::displayManagerMenu()
 {
     int functNum3;
     std::cout << "Type integer for associated Manager function: " << std::endl;
-    std::cout << "1. User Login" << std::endl;
-    std::cout << "2. Create Account" << std::endl;
+    std::cout << "1. Deposit Money in Account:" << std::endl;
+    std::cout << "2. Withdraw from Account:" << std::endl;
     std::cout << "3. print account summary of a given account number" << std::endl;
-    std::cout << "4. Exit " << std::endl;
+    std::cout << "4. print summary of own account: " << std::endl;
+    std::cout << "5. Exit " << std::endl;
     std::cin >> functNum3;
     switch (functNum3) 
     {
     case 1:
         //something
+
         break;
     case 2:
         //something
         break;
-    case 3:
+    case 3: {
         //print account summary of given account number
         std::cout << "enter number of account you want a summary of: " << std::endl;
         //std::cin >> Account.id;
         std::string enteredAccountNumber;
         std::getline(std::cin, enteredAccountNumber);
-
-        //pointer to other stuff
+        //loop through account list probably
+        //int numAcc = getNumAccounts();
+        /*for (int i =0; i<numAcc; i++) {
+        
+        }*/
+        
+        //this account is attached to the id number
         //Manager->printAccountSummary();
         //need manager title
         break;
+    }
     case 4:
-        //something
+        
+        //print account owned by manager
+        currentUser->printAccountSummary();
+    case 5:
+        //make while loop at top stop
         bankStorage->saveUsersToFile();
         bankStorage->saveManagersToFile();
         isRunning = false;
