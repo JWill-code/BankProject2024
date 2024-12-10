@@ -1,3 +1,5 @@
+#include <iostream>
+
 #include "Transaction.h"
 
 // Static variables
@@ -29,20 +31,24 @@ int Transaction::getTransactionType() const
     return this->transactionType;
 }
 
-std::string Transaction::getTransactionText() const
+void Transaction::printTransaction() const
 {   
     // Return different text depending on the type of transaction
     switch (this->transactionType)
     {
-    case 1:
-        // Deposit
-        return Transaction::depositText + std::to_string(this->amount);
+    case 1: // Deposit
 
-    case 2:
-        // Withdrawal
-        return Transaction::withdrawalText + std::to_string(this->amount);
+        std::cout << Transaction::depositText << this->amount << std::endl;
+        break;
 
+    case 2: // Withdrawal
+
+        std::cout << Transaction::withdrawalText << this->amount << std::endl;
+        break;
+        
+    default: // Unknown type
+
+        std::cout << Transaction::unknownTypeText;
+        break;
     }
-
-    return Transaction::unknownTypeText;
 }

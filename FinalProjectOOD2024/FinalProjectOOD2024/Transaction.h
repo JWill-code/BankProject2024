@@ -20,8 +20,10 @@ public:
 
     Transaction(int type, double amount);
 
+    /* Output */
+    void printTransaction() const;
+
     /* Getters and Setters */
     int getTransactionType() const;
-    std::string getTransactionText() const;
 };
 

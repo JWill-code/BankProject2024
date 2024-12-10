@@ -149,6 +149,7 @@ void BankLogic::displayBankMenu()
                 // Continue loop if the user does not select a valid option
                 else if (enteredAccountType != 1 && enteredAccountType != 2)
                 {
+                    std::cout << "Please enter a valid account type" << std::endl;
                     enteredAccountType = -2;
                 }
             }
@@ -239,8 +240,18 @@ void BankLogic::displayUserMenu()
         switch (functNum) {
         case 1: // Deposit
 
-            std::cout << "Enter deposit amount, or -1 to cancel: ";
-            std::cin >> amount;
+            std::cout << std::endl << "Enter deposit amount, or -1 to cancel: $";
+
+            // If an invalid value was entered, cancel and clear the console buffer
+            if (!(std::cin >> amount)) {
+
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Error: Bad input value" << std::endl;
+
+                break;
+            }
 
             if (amount == -1)
             {
@@ -256,8 +267,18 @@ void BankLogic::displayUserMenu()
 
         case 2: // Withdrawal
 
-            std::cout << "Enter withdrawal amount, or -1 to cancel: " << std::endl;
-            std::cin >> amount;
+            std::cout << std::endl << "Enter withdrawal amount, or -1 to cancel: $";
+            
+            // If an invalid value was entered, cancel and clear the console buffer
+            if (!(std::cin >> amount)) {
+
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Error: Bad input value" << std::endl;
+
+                break;
+            }
 
             if (amount == -1)
             {
@@ -277,7 +298,7 @@ void BankLogic::displayUserMenu()
 
         case 4: // Log Out
 
-            std::cout << "Logging out..." << std::endl;
+            std::cout << std::endl << "Logging out..." << std::endl;
 
             // Save the current user and log them out
             if (!bankStorage->saveUser(*currentUser)) {
@@ -295,7 +316,7 @@ void BankLogic::displayUserMenu()
             // Save the current user and log them out
             if (!bankStorage->saveUser(*currentUser)) {
 
-                std::cout << "Error saving account changes!" << std::endl;
+                std::cout << std::endl << "Error saving account changes!" << std::endl;
             }
 
             currentUser = NULL;
@@ -338,8 +359,18 @@ void BankLogic::displayManagerMenu()
         {
         case 1: // Deposit
 
-            std::cout << std::endl << "Enter deposit amount, or -1 to cancel: ";
-            std::cin >> amount;
+            std::cout << std::endl << "Enter deposit amount, or -1 to cancel: $";
+            
+            // If an invalid value was entered, cancel and clear the console buffer
+            if (!(std::cin >> amount)) {
+
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Error: Bad input value" << std::endl;
+
+                break;
+            }
 
             if (amount == -1)
             {
@@ -355,8 +386,18 @@ void BankLogic::displayManagerMenu()
 
         case 2: // Withdrawal
 
-            std::cout << std::endl << "Enter withdrawal amount, or -1 to cancel: " << std::endl;
-            std::cin >> amount;
+            std::cout << std::endl << "Enter withdrawal amount, or -1 to cancel: $";
+            
+            // If an invalid value was entered, cancel and clear the console buffer
+            if (!(std::cin >> amount)) {
+
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Error: Bad input value" << std::endl;
+
+                break;
+            }
 
             if (amount == -1) 
             {
@@ -421,7 +462,7 @@ void BankLogic::displayManagerMenu()
 
         case 6: // Log Out
 
-            std::cout << "Logging out..." << std::endl;
+            std::cout << std::endl << "Logging out..." << std::endl;
 
             // Save the current user and log them out
             if (!bankStorage->saveManager(*currentUser)) 

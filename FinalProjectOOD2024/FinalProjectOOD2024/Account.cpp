@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iomanip>
 
 #include "Account.h"
 #include "User.h"
@@ -62,9 +61,6 @@ bool Account::checkPassword(std::string inputted_password) const
 
 bool Account::withdraw(double amount)
 {
-    // Set console output to round to two decimal places
-    std::cout << std::fixed << std::setprecision(2);
-
     if (amount > this->balance || amount < 0)
     {
         return false;
@@ -82,9 +78,6 @@ bool Account::withdraw(double amount)
 
 bool Account::deposit(double amount)
 {
-    // Set console output to round to two decimal places
-    std::cout << std::fixed << std::setprecision(2);
-
     if (amount < 0)
     {
         return false;
