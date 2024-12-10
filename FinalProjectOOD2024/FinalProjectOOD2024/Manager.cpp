@@ -17,7 +17,7 @@ Manager::Manager(const Account& other) : Account(other)
 void Manager::printAccountSummary() const
 {
     // Print account information
-    std::cout << "Account Summary for " << getUsername() << " [ID = " << getID() << "] [Manager]:\n"
+    std::cout << std::endl << "Account Summary for " << getUsername() << " [ID = " << getID() << "] [Manager]:\n"
         << "Name: " << getFirstName() << " " << getLastName() << "\n"
         << "Balance: $" << getBalance() << "\n" << "Account type: " << getAccountType() <<std::endl;
 

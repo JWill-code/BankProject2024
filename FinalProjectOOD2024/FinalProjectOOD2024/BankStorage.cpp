@@ -203,7 +203,7 @@ void BankStorage::printUserData() const {
 
     for (User u : userList)
     {
-        std::cout << std::endl << "[ID: " << u.getID() << "]" << std::endl;
+        std::cout << std::endl << "[ID = " << u.getID() << "]" << std::endl;
         std::cout << "Username: " << u.getUsername() << std::endl << "Name: " << u.getFirstName() << " " << u.getLastName() << std::endl;
         std::cout << "Account Type: " << u.getAccountType() << std::endl;
     }

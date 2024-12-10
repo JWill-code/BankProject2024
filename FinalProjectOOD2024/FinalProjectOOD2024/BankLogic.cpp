@@ -44,7 +44,16 @@ void BankLogic::displayBankMenu()
     std::cout << "4. Exit " << std::endl;
 
     // Get selected option from user
-    std::cin >> functNum;
+    // If an invalid value was entered, cancel and clear the console buffer
+    if (!(std::cin >> functNum)) {
+
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        std::cout << std::endl << "Error: Bad input value" << std::endl;
+
+        return;
+    }
 
     // Possible inputs used in switch function
     std::string enteredUsername;
@@ -232,7 +241,16 @@ void BankLogic::displayUserMenu()
         std::cout << "5. Exit " << std::endl;
 
         // Get selected option from user
-        std::cin >> functNum;
+        // If an invalid value was entered, cancel and clear the console buffer
+        if (!(std::cin >> functNum)) {
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            std::cout << std::endl << "Error: Bad input value" << std::endl;
+
+            continue;
+        }
 
         // Possible inputs used in switch function
         double amount;
@@ -349,7 +367,16 @@ void BankLogic::displayManagerMenu()
         std::cout << "8. Exit " << std::endl;
         
         // Get selected option from user
-        std::cin >> functNum;
+        // If an invalid value was entered, cancel and clear the console buffer
+        if (!(std::cin >> functNum)) {
+
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            std::cout << std::endl << "Error: Bad input value" << std::endl;
+
+            continue;
+        }
 
         // Possible inputs used in switch function
         User* selectedUser;
