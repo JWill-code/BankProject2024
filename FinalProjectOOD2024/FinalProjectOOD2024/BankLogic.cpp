@@ -455,6 +455,17 @@ void BankLogic::displayManagerMenu()
             std::cout << std::endl << "Enter the ID of the account you wish to examine, or -1 to cancel: " << std::endl;
             std::cin >> accountID;
 
+            // If an invalid value was entered, cancel and clear the console buffer
+            if (!(std::cin >> accountID)) {
+
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Error: Bad input value" << std::endl;
+
+                break;
+            }
+
             if (accountID == -1)
             {
                 break;
@@ -480,7 +491,18 @@ void BankLogic::displayManagerMenu()
             // Request account ID
             std::cout << std::endl << "Enter the ID of the account you wish to remove, or -1 to cancel: " << std::endl;
 
-            if (!std::cin >> accountID || accountID == -1)
+            // If an invalid value was entered, cancel and clear the console buffer
+            if (!(std::cin >> accountID)) {
+
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                std::cout << "Error: Bad input value" << std::endl;
+
+                break;
+            }
+
+            if (accountID == -1)
             {
                 break;
             }
