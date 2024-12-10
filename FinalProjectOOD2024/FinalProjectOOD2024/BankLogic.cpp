@@ -53,7 +53,7 @@ void BankLogic::displayBankMenu()
     int enteredAccountType = -2;
 
     // Placeholder to get unique account ID
-    int uniqueID = Account::getNumAccounts();
+    int uniqueID = Account::getNumAccounts() + 1;
 
     switch (functNum)
     {
@@ -104,7 +104,7 @@ void BankLogic::displayBankMenu()
             break;
         }
 
-        std::cout << "First Name (or type \"cancel\" to exit):";
+        std::cout << "First Name (or type \"cancel\" to exit): ";
         std::cin >> enteredFirstName;
 
         // If blank, cancel
