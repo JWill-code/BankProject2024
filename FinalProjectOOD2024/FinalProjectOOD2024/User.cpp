@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 #include "User.h"
 #include "Account.h"
@@ -23,6 +24,9 @@ User::User(const Account& other) : Account(other)
 
 void User::printAccountSummary() const
 {
+    // Set console output to round to two decimal places
+    std::cout << std::fixed << std::setprecision(2);
+
     // Print account information
     std::cout << "Account Summary for " << getUsername() << " [ID = " << getID() << "]:\n"
         << "Name: " << getFirstName() << " " << getLastName() << "\n"
@@ -30,6 +34,11 @@ void User::printAccountSummary() const
 
     // List transaction history
     std::cout << "Transaction history from this session:" << std::endl;
+
+    if (transactions.empty()) {
+
+        std::cout << "[No transactions completed]" << std::endl;
+    }
 
     for (Transaction t : transactions)
     {

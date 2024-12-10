@@ -8,6 +8,7 @@
 // Constructor of the main bank application
 BankLogic::BankLogic() 
 {
+    // Set console output to round to two decimal places
     std::cout << std::fixed << std::setprecision(2);
 
     isRunning = true;
@@ -25,7 +26,7 @@ BankLogic::BankLogic()
         displayBankMenu();
     }
 
-    std::cout << "Thank you for choosing our bank! Saving and exiting..." << std::endl;
+    std::cout << std::endl << "Thank you for choosing our bank! Saving and exiting..." << std::endl;
 
     bankStorage->saveUsersToFile();
     bankStorage->saveManagersToFile();
@@ -36,7 +37,7 @@ void BankLogic::displayBankMenu()
     // User input
     int functNum;
     
-    std::cout << "Please Select an Option: " << std::endl;
+    std::cout << std::endl << "Please Select an Option: " << std::endl;
     std::cout << "1. User Login" << std::endl;
     std::cout << "2. Create Account" << std::endl;
     std::cout << "3. Manager Login" << std::endl;
@@ -61,13 +62,23 @@ void BankLogic::displayBankMenu()
     case 1: // User Login
 
         // Get user input
-        std::cout << "Enter login information, or leave blank to exit" << std::endl;
+        std::cout << std::endl << "Enter login information (or type \"cancel\" to exit)" << std::endl;
 
         std::cout << "Username: ";
         std::cin >> enteredUsername;
 
+        if (enteredUsername.compare("cancel") == 0)
+        {
+            break;
+        }
+
         std::cout << "Password: ";
         std::cin >> enteredPassword;
+
+        if (enteredPassword.compare("cancel") == 0)
+        {
+            break;
+        }
 
         // Attempt to log in the user with the given input
         if (bankStorage->loginUser(enteredUsername, enteredPassword))
@@ -84,7 +95,7 @@ void BankLogic::displayBankMenu()
         
     case 2: // Create Account
 
-        std::cout << "Provide the following information to create a new account: " << std::endl;
+        std::cout << std::endl << "Provide the following information to create a new account: " << std::endl;
 
         std::cout << "Username (or type \"cancel\" to exit): ";
         std::cin >> enteredUsername;
@@ -165,13 +176,23 @@ void BankLogic::displayBankMenu()
 
     case 3: // Manager Login
 
-        std::cout << "Enter login information, or leave blank to exit" << std::endl;
+        std::cout << std::endl << "Enter login information (or type \"cancel\" to exit)" << std::endl;
 
         std::cout << "Username: ";
         std::cin >> enteredUsername;
 
+        if (enteredUsername.compare("cancel") == 0)
+        {
+            break;
+        }
+
         std::cout << "Password: ";
         std::cin >> enteredPassword;
+
+        if (enteredPassword.compare("cancel") == 0)
+        {
+            break;
+        }
 
         // Attempt to log in the manager with the given input
         if (bankStorage->loginManager(enteredUsername, enteredPassword))
@@ -201,7 +222,7 @@ void BankLogic::displayUserMenu()
         // User input
         int functNum;
 
-        std::cout << "Hello, " << currentUser->getFirstName() << std::endl;
+        std::cout << std::endl << "Hello, " << currentUser->getFirstName() << std::endl;
         std::cout << "Please Select an Option: " << std::endl;
         std::cout << "1. Cash Deposit" << std::endl;
         std::cout << "2. Cash Withdraw" << std::endl;
@@ -283,14 +304,15 @@ void BankLogic::displayManagerMenu()
         // User input
         int functNum;
 
-        std::cout << "Hello, " << currentUser->getFirstName() << " (Logged In as Manager)" << std::endl;
+        std::cout << std::endl << "Hello, " << currentUser->getFirstName() << " (Logged In as Manager)" << std::endl;
         std::cout << "Please Select an Option: " << std::endl;
         std::cout << "1. Cash Deposit:" << std::endl;
         std::cout << "2. Cash Withdraw:" << std::endl;
         std::cout << "3. Account Summary" << std::endl;
-        std::cout << "4. Examine Another Account: " << std::endl;
-        std::cout << "5. Log Out" << std::endl;
-        std::cout << "6. Exit " << std::endl;
+        std::cout << "4. Examine Another Account" << std::endl;
+        std::cout << "5. Delete An Account" << std::endl;
+        std::cout << "6. Log Out" << std::endl;
+        std::cout << "7. Exit " << std::endl;
         
         // Get selected option from user
         std::cin >> functNum;
@@ -304,7 +326,7 @@ void BankLogic::displayManagerMenu()
         {
         case 1: // Deposit
 
-            std::cout << "Enter deposit amount: ";
+            std::cout << std::endl << "Enter deposit amount: ";
             std::cin >> amount;
             if (!currentUser->deposit(amount)) {
 
@@ -315,7 +337,7 @@ void BankLogic::displayManagerMenu()
 
         case 2: // Withdrawal
 
-            std::cout << "Enter withdrawal amount: " << std::endl;
+            std::cout << std::endl << "Enter withdrawal amount: " << std::endl;
             std::cin >> amount;
             if (!currentUser->withdraw(amount)) {
 
@@ -331,7 +353,7 @@ void BankLogic::displayManagerMenu()
         case 4: // Examine Another User's account
 
             // Request account ID
-            std::cout << "Enter the ID of the account you wish to examine: " << std::endl;
+            std::cout << std::endl << "Enter the ID of the account you wish to examine: " << std::endl;
             std::cin >> accountID;
 
             // Attempt to get the user
@@ -349,13 +371,31 @@ void BankLogic::displayManagerMenu()
             
             break;
 
-        case 5: // Log Out
+        case 5: // Remove a user from the system
+
+            // Request account ID
+            std::cout << std::endl << "Enter the ID of the account you wish to remove, or -1 to cancel: " << std::endl;
+
+            if (!std::cin >> accountID || accountID == -1)
+            {
+                break;
+            }
+
+            // Attempt to remove the user
+            if (!bankStorage->removeUser(accountID))
+            {
+                std::cout << "An account with this ID was not found or could not be removed." << std::endl;
+            }
+
+            break;
+
+        case 6: // Log Out
 
             std::cout << "Logging out..." << std::endl;
 
             // Save the current user and log them out
-            if (!bankStorage->saveUser(*currentUser)) {
-
+            if (!bankStorage->saveManager(*currentUser)) 
+            {
                 std::cout << "Error saving account changes!" << std::endl;
             }
 
@@ -364,12 +404,12 @@ void BankLogic::displayManagerMenu()
             isInManagerMenu = false;
             break;
 
-        case 6: // Exit
+        case 7: // Exit
 
             // Save the current user and log them out
-            if (!bankStorage->saveUser(*currentUser)) {
-
-                std::cout << "Error saving account changes!" << std::endl;
+            if (!bankStorage->saveManager(*currentUser))
+            {
+                std::cout << std::endl << "Error saving account changes!" << std::endl;
             }
 
             currentUser = NULL;
