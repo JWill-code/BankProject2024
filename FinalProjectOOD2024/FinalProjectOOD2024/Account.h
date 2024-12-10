@@ -36,7 +36,7 @@ public:
     bool deposit(double amount);
 
     /* Getters and Setters */
-    int getNumAccounts() const;
+    static int getNumAccounts();
     int getID() const;
     std::string getAccountType() const;
     int getAccountTypeNum();

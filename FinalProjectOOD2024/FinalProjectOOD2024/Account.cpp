@@ -9,9 +9,9 @@ int Account::numAccounts = 0;
 
 Account::Account(int id, std::string userName, std::string password, std::string firstName, std::string lastName, double balance, int type)
 {
-    if (type !=1 && type != 2)
+    if (type != 1 && type != 2)
     {
-        std::cout << "invalid account type, checking account created" << std::endl;
+        std::cout << "Invalid account type -- Checking account created." << std::endl;
         type = 1;
     }
 
@@ -84,7 +84,7 @@ bool Account::deposit(double amount)
 
 /* Getters and Setters */
 
-int Account::getNumAccounts() const
+int Account::getNumAccounts()
 {
     return numAccounts;
 }
