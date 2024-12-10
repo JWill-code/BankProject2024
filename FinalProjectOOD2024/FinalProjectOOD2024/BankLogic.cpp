@@ -168,7 +168,7 @@ void BankLogic::displayBankMenu()
             
             if (!bankStorage->addUser(newUser)) {
 
-                std::cout << "Unable to add user: A with this username already exists!" << std::endl;
+                std::cout << "Unable to add user: A user with this username already exists!" << std::endl;
             }
         }
 
@@ -239,8 +239,14 @@ void BankLogic::displayUserMenu()
         switch (functNum) {
         case 1: // Deposit
 
-            std::cout << "Enter deposit amount: ";
+            std::cout << "Enter deposit amount, or -1 to cancel: ";
             std::cin >> amount;
+
+            if (amount == -1)
+            {
+                break;
+            }
+
             if (!currentUser->deposit(amount)) {
 
                 std::cout << "Error: Could not complete the deposit." << std::endl;
@@ -250,8 +256,14 @@ void BankLogic::displayUserMenu()
 
         case 2: // Withdrawal
 
-            std::cout << "Enter withdrawal amount: " << std::endl;
+            std::cout << "Enter withdrawal amount, or -1 to cancel: " << std::endl;
             std::cin >> amount;
+
+            if (amount == -1)
+            {
+                break;
+            }
+
             if (!currentUser->withdraw(amount)) {
 
                 std::cout << "Error: Could not complete the withdrawal. You may not have enough money in this account." << std::endl;
@@ -326,8 +338,14 @@ void BankLogic::displayManagerMenu()
         {
         case 1: // Deposit
 
-            std::cout << std::endl << "Enter deposit amount: ";
+            std::cout << std::endl << "Enter deposit amount, or -1 to cancel: ";
             std::cin >> amount;
+
+            if (amount == -1)
+            {
+                break;
+            }
+
             if (!currentUser->deposit(amount)) {
 
                 std::cout << "Error: Could not complete the deposit." << std::endl;
@@ -337,14 +355,21 @@ void BankLogic::displayManagerMenu()
 
         case 2: // Withdrawal
 
-            std::cout << std::endl << "Enter withdrawal amount: " << std::endl;
+            std::cout << std::endl << "Enter withdrawal amount, or -1 to cancel: " << std::endl;
             std::cin >> amount;
+
+            if (amount == -1) 
+            {
+                break;
+            }
+
             if (!currentUser->withdraw(amount)) {
 
                 std::cout << "Error: Could not complete the withdrawal. You may not have enough money in this account." << std::endl;
             }
 
             break;
+
         case 3: // Print Account Summary
 
             currentUser->printAccountSummary();
@@ -353,8 +378,13 @@ void BankLogic::displayManagerMenu()
         case 4: // Examine Another User's account
 
             // Request account ID
-            std::cout << std::endl << "Enter the ID of the account you wish to examine: " << std::endl;
+            std::cout << std::endl << "Enter the ID of the account you wish to examine, or -1 to cancel: " << std::endl;
             std::cin >> accountID;
+
+            if (accountID == -1)
+            {
+                break;
+            }
 
             // Attempt to get the user
             selectedUser = bankStorage->getUser(accountID);

@@ -180,8 +180,6 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
                     // Attempt to create a new user given the information and add it to the user list
                     User u(id, userName, password, firstName, lastName, balance, type);
                     addUser(u);
-
-                    u.printAccountSummary();
                 }
                 catch (std::exception ex) 
                 {
@@ -301,8 +299,6 @@ bool BankStorage::loadManagersFromFile(std::string fileName)
                     // Attempt to create a new manager given the information and add it to the manager list
                     Manager m(id, userName, password, firstName, lastName, balance, type);
                     managerList.push_back(m);
-
-                    m.printAccountSummary();
                 }
                 catch (std::exception ex) 
                 {
