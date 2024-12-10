@@ -37,6 +37,12 @@ Account::Account(const Account &other)
     this->password = other.password;
     this->balance = other.balance;
     this->type = other.type;
+
+    // Copy over transaction information of this user
+    for (Transaction t : other.transactions) {
+
+        this->transactions.push_back(t);
+    }
 }
 
 /* Account Validation */
