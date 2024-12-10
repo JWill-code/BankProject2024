@@ -61,7 +61,7 @@ bool Account::checkPassword(std::string inputted_password) const
 
 bool Account::withdraw(double amount)
 {
-    if (amount > this->balance || amount < 0)
+    if (amount > this->balance || amount <= 0)
     {
         return false;
     }
@@ -78,7 +78,7 @@ bool Account::withdraw(double amount)
 
 bool Account::deposit(double amount)
 {
-    if (amount < 0)
+    if (amount <= 0)
     {
         return false;
     }

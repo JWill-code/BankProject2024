@@ -287,7 +287,7 @@ void BankLogic::displayUserMenu()
 
             if (!currentUser->withdraw(amount)) {
 
-                std::cout << "Error: Could not complete the withdrawal. You may not have enough money in this account." << std::endl;
+                std::cout << "Error: Could not complete the withdrawal. There may not be enough money in this account." << std::endl;
             }
 
             break;
