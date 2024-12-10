@@ -454,8 +454,7 @@ void BankLogic::displayManagerMenu()
 
             // Request account ID
             std::cout << std::endl << "Enter the ID of the account you wish to examine, or -1 to cancel: " << std::endl;
-            std::cin >> accountID;
-
+            
             // If an invalid value was entered, cancel and clear the console buffer
             if (!(std::cin >> accountID)) {
 
