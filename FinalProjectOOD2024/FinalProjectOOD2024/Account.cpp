@@ -110,10 +110,10 @@ std::string Account::getAccountType() const
     if (this->type == 1 )
     {
 
-        return "checking";
+        return "Checking";
     }
 
-    return "savings";
+    return "Savings";
 }
 
 int Account::getAccountTypeNum() 

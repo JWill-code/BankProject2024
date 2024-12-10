@@ -50,6 +50,8 @@ public:
     bool saveUsersToFile(std::string fileName = getUserFilePath());
     bool loadUsersFromFile(std::string fileName = getUserFilePath());
 
+    void printUserData() const;
+
 	/* Manager Data Functions */
 
 	bool loginManager(std::string uName, std::string pswd) const;

@@ -197,6 +197,18 @@ bool BankStorage::loadUsersFromFile(std::string fileName)
     return false;
 }
 
+void BankStorage::printUserData() const {
+
+    std::cout << std::endl << "Available Users:" << std::endl;
+
+    for (User u : userList)
+    {
+        std::cout << std::endl << "[ID: " << u.getID() << "]" << std::endl;
+        std::cout << "Username: " << u.getUsername() << std::endl << "Name: " << u.getFirstName() << " " << u.getLastName() << std::endl;
+        std::cout << "Account Type: " << u.getAccountType() << std::endl;
+    }
+}
+
 
 /* Manager Data Functions */
 

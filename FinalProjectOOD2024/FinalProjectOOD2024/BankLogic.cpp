@@ -342,10 +342,11 @@ void BankLogic::displayManagerMenu()
         std::cout << "1. Cash Deposit:" << std::endl;
         std::cout << "2. Cash Withdraw:" << std::endl;
         std::cout << "3. Account Summary" << std::endl;
-        std::cout << "4. Examine Another Account" << std::endl;
-        std::cout << "5. Delete An Account" << std::endl;
-        std::cout << "6. Log Out" << std::endl;
-        std::cout << "7. Exit " << std::endl;
+        std::cout << "4. List User Accounts" << std::endl;
+        std::cout << "5. Examine Another Account" << std::endl;
+        std::cout << "6. Delete An Account" << std::endl;
+        std::cout << "7. Log Out" << std::endl;
+        std::cout << "8. Exit " << std::endl;
         
         // Get selected option from user
         std::cin >> functNum;
@@ -416,7 +417,12 @@ void BankLogic::displayManagerMenu()
             currentUser->printAccountSummary();
             break;
 
-        case 4: // Examine Another User's account
+        case 4: // List User Accounts
+
+            bankStorage->printUserData();
+            break;
+
+        case 5: // Examine Another User's account
 
             // Request account ID
             std::cout << std::endl << "Enter the ID of the account you wish to examine, or -1 to cancel: " << std::endl;
@@ -442,7 +448,7 @@ void BankLogic::displayManagerMenu()
             
             break;
 
-        case 5: // Remove a user from the system
+        case 6: // Remove a user from the system
 
             // Request account ID
             std::cout << std::endl << "Enter the ID of the account you wish to remove, or -1 to cancel: " << std::endl;
@@ -460,7 +466,7 @@ void BankLogic::displayManagerMenu()
 
             break;
 
-        case 6: // Log Out
+        case 7: // Log Out
 
             std::cout << std::endl << "Logging out..." << std::endl;
 
@@ -475,7 +481,7 @@ void BankLogic::displayManagerMenu()
             isInManagerMenu = false;
             break;
 
-        case 7: // Exit
+        case 8: // Exit
 
             // Save the current user and log them out
             if (!bankStorage->saveManager(*currentUser))
